@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:persefone/pages/home%20page/view/widgets/custom_appbar.dart';
 
+import '../../profile page/view/profile_page.dart';
+import 'widgets/custom_appbar.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -56,6 +59,10 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   InkWell(
                     onTap: (){
+                      Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => const ProfilePage())));
                     },
                     child: Stack(
                       children: [
