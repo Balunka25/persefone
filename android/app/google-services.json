@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1007516672810",
+    "project_id": "persefone-ce9c4",
+    "storage_bucket": "persefone-ce9c4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1007516672810:android:c00841cc1bfc9cfa1a3453",
+        "android_client_info": {
+          "package_name": "com.example.persefone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1007516672810-j03s04o50f4s2lm5as53r42c2l293mn4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkBDO76Y0Ue3xccEiDELoCqSHAYld_dP0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1007516672810-j03s04o50f4s2lm5as53r42c2l293mn4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
