@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../explore page/view/explore_page.dart';
 import 'widgets/custom_appbar.dart';
 
 class HomePage extends StatefulWidget {
@@ -29,6 +30,10 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   InkWell(
                     onTap: (){
+                      Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => const ExplorePage())));
                     },
                     child: Stack(
                       children: [
