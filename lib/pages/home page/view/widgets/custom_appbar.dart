@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:persefone/design/my_colors.dart';
 
 class CustomAppbar extends StatelessWidget with PreferredSizeWidget {
   CustomAppbar({Key? key}) : super(key: key);
@@ -9,7 +10,7 @@ class CustomAppbar extends StatelessWidget with PreferredSizeWidget {
       height: 160,
       padding: const EdgeInsets.only(bottom: 10.0),
       decoration: const BoxDecoration(
-        color: Colors.amber,
+        color: MyColors.primaryyellow,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(30.0),
           bottomRight: Radius.circular(30.0),
@@ -22,7 +23,7 @@ class CustomAppbar extends StatelessWidget with PreferredSizeWidget {
             ),
           ),
           toolbarHeight: 150,
-          backgroundColor: const Color(0xFF45674F),
+          backgroundColor: MyColors.primarygreen,
           elevation: 0,
           centerTitle: true,
           title: Column(
