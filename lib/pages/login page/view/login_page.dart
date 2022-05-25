@@ -117,35 +117,36 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(
                 height: 80,
               ),
-              Row(
-                children: [
-                  const SizedBox(
-                    width: 100,
-                  ),
-                  InkWell(
-                    splashColor: MyColors.primaryyellow,
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const RegisterPage(),
+              Padding(
+                padding: const EdgeInsets.only(right:64.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    InkWell(
+                      splashColor: MyColors.primaryyellow,
+                      onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RegisterPage(),
+                        ),
+                      ),
+                      child: Text(
+                        "Não possui uma conta? Clique aqui!",
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline4!
+                            .copyWith(fontWeight: FontWeight.bold, fontSize: 18),
                       ),
                     ),
-                    child: Text(
-                      "Não possui uma conta?",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline4!
-                          .copyWith(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               const SizedBox(
-                height: 8,
+                height: 36,
               ),
               Observer(builder: (_) {
                 return SizedBox(
-                  width: 260,
+                  width: 200,
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () async {
