@@ -80,13 +80,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       const EdgeInsets.only(left: 20, right: 40, bottom: 20),
                   child: Observer(builder: (_) {
                     return TextField(
+                      style: const  TextStyle(color: MyColors.primaryyellow),
                       obscureText: !_controller.isPasswordVisible,
                       onChanged: _controller.changePassword,
                       decoration: InputDecoration(
                           suffixIcon: IconButton(
                               icon: _controller.isPasswordVisible
-                                  ? Icon(Icons.visibility)
-                                  : Icon(Icons.visibility_off),
+                                  ? const Icon(Icons.visibility)
+                                  : const  Icon(Icons.visibility_off),
                               onPressed: _controller.setPasswordVisibility),
                           labelText: 'Senha',
                           enabledBorder: const UnderlineInputBorder(
@@ -104,13 +105,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       const EdgeInsets.only(left: 20, right: 40, bottom: 20),
                   child: Observer(builder: (_) {
                     return TextField(
+                      style: const  TextStyle(color: MyColors.primaryyellow),
                       obscureText: !_controller.isPasswordConfirmationVisible,
                       onChanged: _controller.changePasswordConfirmation,
                       decoration: InputDecoration(
                           suffixIcon: IconButton(
                               icon: _controller.isPasswordConfirmationVisible
-                                  ? Icon(Icons.visibility)
-                                  : Icon(Icons.visibility_off),
+                                  ? const Icon(Icons.visibility)
+                                  : const Icon(Icons.visibility_off),
                               onPressed: _controller
                                   .setPasswordConfirmationVisibility),
                           labelText: 'Confirmar senha',
@@ -178,15 +180,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
               ),
-              //
-              // InkWell(
-              //   splashColor: MyColors.primarywhite,
-              //   onTap: () {},
-              //   child: Text(
-              //     "OK",
-              //     style: Theme.of(context).textTheme.headline4,
-              //   ),
-              // ),
+              
             ],
           ),
         ),
