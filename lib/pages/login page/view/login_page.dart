@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
                 margin: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
                 child: Observer(builder: (_) {
                   return TextField(
-                     style: const  TextStyle(color: MyColors.primaryyellow),
+                    style: const TextStyle(color: MyColors.primaryyellow),
                     onChanged: _controller.changeEmail,
                     decoration: InputDecoration(
                         labelText: 'Email',
@@ -70,11 +70,22 @@ class _LoginPageState extends State<LoginPage> {
                 margin: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
                 child: Observer(builder: (_) {
                   return TextField(
-                    style: const  TextStyle(color: MyColors.primaryyellow),
+                    style: const TextStyle(color: MyColors.primaryyellow),
+                    obscureText: !_controller.isPasswordVisible,
                     onChanged: _controller.changePassword,
                     decoration: InputDecoration(
+                        suffixIcon: IconButton(
+                            icon: _controller.isPasswordVisible
+                                ? const Icon(
+                                    Icons.visibility,
+                                    color: MyColors.primarywhite,
+                                  )
+                                : const Icon(
+                                    Icons.visibility_off,
+                                    color: MyColors.primarywhite,
+                                  ),
+                            onPressed: _controller.changePasswordVisibility),
                         labelText: 'Senha',
-                        
                         focusedBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(
                               color: MyColors.primaryyellow, width: 2),
@@ -87,20 +98,21 @@ class _LoginPageState extends State<LoginPage> {
                   );
                 }),
               ),
-              Row(
-                children: [
-                  const SizedBox(
-                    width: 250,
-                  ),
-                  InkWell(
-                    splashColor: MyColors.primaryyellow,
-                    onTap: () {},
-                    child: Text(
-                      "Alterar Senha",
-                      style: Theme.of(context).textTheme.headline4,
+              Padding(
+                padding: const EdgeInsets.only(right: 24.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    InkWell(
+                      splashColor: MyColors.primaryyellow,
+                      onTap: () {},
+                      child: Text(
+                        "Alterar Senha",
+                        style: Theme.of(context).textTheme.headline4,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 80,
