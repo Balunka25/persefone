@@ -3,6 +3,8 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 
 import 'package:persefone/design/my_colors.dart';
 
+import '../home page/view/home_page.dart';
+
 class ChangePassPage extends StatefulWidget {
   const ChangePassPage({Key? key}) : super(key: key);
 
@@ -86,7 +88,12 @@ class _ChangePassPageState extends State<ChangePassPage> {
                 width: 200,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HomePage(),
+                              ),
+                            ),
                   child: Text("Confirmar",
                       style: Theme.of(context)
                           .textTheme
