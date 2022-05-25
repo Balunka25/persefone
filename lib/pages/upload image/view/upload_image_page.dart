@@ -7,6 +7,8 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../profile page/view/profile_page.dart';
+
 class UploadImagePage extends StatefulWidget with PreferredSizeWidget {
   const UploadImagePage({Key? key}) : super(key: key);
 
@@ -233,7 +235,11 @@ class _UploadImagePageState extends State<UploadImagePage> {
                           "owner_id": currentUser!.uid
                         },
                       );
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const ProfilePage()));
                     } on FirebaseException catch (e) {
                       throw Exception("Erro: $e");
                     }
