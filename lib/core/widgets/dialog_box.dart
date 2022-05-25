@@ -10,11 +10,12 @@ dialogBox(
   Function()? onpressed,
 ) {
   return showDialog(
+    
     context: mycontext,
     builder: (context) => AlertDialog(
       contentPadding: const EdgeInsets.fromLTRB(30, 30, 10, 10),
       backgroundColor: MyColors.primarywhite,
-      title: Text(
+            title: Text(
         titleText,
         style: TextStyle(
             fontFamily: GoogleFonts.secularOne().fontFamily,
