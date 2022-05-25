@@ -1,8 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-
 import '../../upload image/view/upload_image_page.dart';
+import '../models/image_model.dart';
 
 class ProfilePage extends StatefulWidget with PreferredSizeWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -15,6 +14,11 @@ class ProfilePage extends StatefulWidget with PreferredSizeWidget {
 }
 
 File? image;
+// @override
+//   void initState() {
+//     // TODO: implement initState
+//     getImages();
+//   }
 
 class _ProfilePageState extends State<ProfilePage> {
   @override
@@ -65,32 +69,69 @@ class _ProfilePageState extends State<ProfilePage> {
             ],
           ),
         ),
-        body: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const SizedBox(width: 40),
-            Text(
-              "Minhas Plantas",
-              style: Theme.of(context)
-                  .textTheme
-                  .headline4!
-                  .copyWith(color: Colors.black),
-            ),
-            IconButton(
-                icon: Icon(
-                  Icons.add_box_outlined,
-                  size: 30,
-                  color: Colors.green[700],
-                ),
-                onPressed: () {
-                  Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: ((context) => const UploadImagePage())));
-                }),
-          ],
-        ),
-      ),
-    );
+        
+        body: 
+        // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     const SizedBox(width: 40),
+            //     Text(
+            //       "Minhas Plantas",
+            //       style: Theme.of(context)
+            //           .textTheme
+            //           .headline4!
+            //           .copyWith(color: Colors.black),
+            //     ),
+            //     IconButton(
+            //         icon: Icon(
+            //           Icons.add_box_outlined,
+            //           size: 30,
+            //           color: Colors.green[700],
+            //         ),
+            //         onPressed: () {
+            //           Navigator.push(
+            //                     context,
+            //                     MaterialPageRoute(
+            //                         builder: ((context) => const UploadImagePage())));
+            //         }),
+            //   ],
+            // ),Column(
+            
+            Padding(padding: EdgeInsets.all(32),
+      child: 
+      ObserverFuture<List<ImageModel>, Exception>(
+  autoInitialize: true,
+  observableFuture: () => imagesUser,
+  onData: (_, data) {
+  if(data.length == 0){
+    return Center(child: Text("Você não criou nenhum post"));
+  }
+  
+return  ListView.builder(
+    itemCount: data.length,
+    itemBuilder: (context, index){
+      var post = data[index];
+      // return CachedNetworkImage(
+      //                           imageUrl: snapshot.data![index].url!,
+      //                           width: 100,
+      //                           height: 100,
+      //                           fit: BoxFit.cover,
+      //                           progressIndicatorBuilder:
+      //                               (context, url, downloadProgress) =>
+      //                                   CircularProgressIndicator(
+      //                                       value: downloadProgress.progress),
+      //                           errorWidget: (context, url, error) =>
+      //                               const Icon(Icons.error),
+      //                         ),
+      //                       );
+    
+  });},
+  onNull: (_) => const Text('Nenhum post criado'),
+  onError: (_, error) => const Text('Ocorreu um erro ao pesquisar os posts'),
+  onPending: (_) => const Center(child: CircularProgressIndicator(color: Colors.blue,),),
+  onUnstarted: (_) => const Text(''),
+)
+    ))
+        );
   }
 }

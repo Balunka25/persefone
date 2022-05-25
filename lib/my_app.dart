@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
           title: 'Show Analytic',
           theme: theme(),
           debugShowCheckedModeBanner: false,
-          home: const LoginPage(),
+          home: const RegisterPage(),
         );
   }
 
