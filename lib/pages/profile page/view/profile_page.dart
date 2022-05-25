@@ -1,5 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:persefone/pages/profile%20page/controller/user_image_controller.dart';
 import '../../upload image/view/upload_image_page.dart';
 import '../models/image_model.dart';
 
@@ -14,13 +16,14 @@ class ProfilePage extends StatefulWidget with PreferredSizeWidget {
 }
 
 File? image;
-// @override
-//   void initState() {
-//     // TODO: implement initState
-//     getImages();
-//   }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final UserImageController store = Modular.get();
+@override
+  void initState() {
+    // TODO: implement initState
+    store.getImages();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -101,12 +104,12 @@ class _ProfilePageState extends State<ProfilePage> {
       child: 
       ObserverFuture<List<ImageModel>, Exception>(
   autoInitialize: true,
-  observableFuture: () => imagesUser,
+  fetchData: store.getPostsFromMobxWidget,
+  observableFuture: () => store.imagesUser,
   onData: (_, data) {
   if(data.length == 0){
     return Center(child: Text("Você não criou nenhum post"));
   }
-  
 return  ListView.builder(
     itemCount: data.length,
     itemBuilder: (context, index){

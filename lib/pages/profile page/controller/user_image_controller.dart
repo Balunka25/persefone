@@ -15,4 +15,9 @@ var imageRepository = ImageRepository();
   getImages(){
     imagesUser = ObservableFuture(imageRepository.getUserImages());
   }
+
+  void getPostsFromMobxWidget(){
+    imagesUser = ObservableFuture(imageRepository.getUserImages());
+  }
+
 }
