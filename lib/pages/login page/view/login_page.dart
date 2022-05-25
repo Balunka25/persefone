@@ -47,12 +47,13 @@ class _LoginPageState extends State<LoginPage> {
                 margin: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
                 child: Observer(builder: (_) {
                   return TextField(
+                     style: const  TextStyle(color: MyColors.primaryyellow),
                     onChanged: _controller.changeEmail,
                     decoration: InputDecoration(
                         labelText: 'Email',
                         focusedBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(
-                              color: MyColors.primaryyellow, width: 2),
+                              color: MyColors.primarywhite, width: 2),
                         ),
                         enabledBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(
@@ -69,9 +70,11 @@ class _LoginPageState extends State<LoginPage> {
                 margin: const EdgeInsets.only(left: 30, right: 30, bottom: 20),
                 child: Observer(builder: (_) {
                   return TextField(
+                    style: const  TextStyle(color: MyColors.primaryyellow),
                     onChanged: _controller.changePassword,
                     decoration: InputDecoration(
                         labelText: 'Senha',
+                        
                         focusedBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(
                               color: MyColors.primaryyellow, width: 2),
@@ -149,38 +152,32 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                           );
-                        } catch(error) {
-
+                        } catch (error) {
                           if (error == 'wrong-password') {
-                            dialogBox(context, "ERRO:", "Senha incorreta!", "OK",
-                                () => Navigator.pop(context));
+                            dialogBox(context, "ERRO:", "Senha incorreta!",
+                                "OK", () => Navigator.pop(context));
                           } else if (error == 'user-not-found' ||
                               error == "invalid-email") {
                             dialogBox(context, "ERRO:", "Usuário inexistente!",
                                 "OK", () => Navigator.pop(context));
                           } else {
-                            dialogBox(
-                              context, 
-                              "ERRO:", 
-                              "Erro ao logar!", 
-                              "OK",
-                              () => Navigator.pop(context));
-                          } 
+                            dialogBox(context, "ERRO:", "Erro ao logar!", "OK",
+                                () => Navigator.pop(context));
+                          }
                         }
-                        
-                      } else if (!_controller.isPasswordValid) {
-                        dialogBox(
-                          context,
-                          "ERRO:",
-                          "Senha não confere!",
-                          "OK",
-                          () => Navigator.pop(context),
-                        );
                       } else if (!_controller.isEmailValid) {
                         dialogBox(
                           context,
                           "ERRO:",
                           "E-mail não confere!",
+                          "OK",
+                          () => Navigator.pop(context),
+                        );
+                      } else if (!_controller.isPasswordValid) {
+                        dialogBox(
+                          context,
+                          "ERRO:",
+                          "Senha não confere!",
                           "OK",
                           () => Navigator.pop(context),
                         );

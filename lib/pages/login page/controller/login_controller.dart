@@ -8,7 +8,6 @@ part 'login_controller.g.dart';
 class LoginController = _LoginControllerBase with _$LoginController;
 
 abstract class _LoginControllerBase with Store {
-
   @observable
   String email = '';
 
@@ -39,13 +38,11 @@ abstract class _LoginControllerBase with Store {
   @action
   Future<dynamic> loginUser() async {
     try {
-
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: email, password: password);
-      
-      return userCredential;
 
-    } on FirebaseAuthException catch(error) {
+      return userCredential;
+    } on FirebaseAuthException catch (error) {
       throw error.code;
     }
   }
@@ -55,5 +52,5 @@ abstract class _LoginControllerBase with Store {
       email.isNotEmpty && email.contains('@') && email.contains(".com");
 
   @computed
-  bool get isPasswordValid => password.length > 7;
+  bool get isPasswordValid => password.length > 5;
 }
