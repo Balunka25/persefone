@@ -25,6 +25,74 @@ mixin _$AllImagesController on _AllImagesControllerBase, Store {
     });
   }
 
+  late final _$totalImagesUserAtom =
+      Atom(name: '_AllImagesControllerBase.totalImagesUser', context: context);
+
+  @override
+  int get totalImagesUser {
+    _$totalImagesUserAtom.reportRead();
+    return super.totalImagesUser;
+  }
+
+  @override
+  set totalImagesUser(int value) {
+    _$totalImagesUserAtom.reportWrite(value, super.totalImagesUser, () {
+      super.totalImagesUser = value;
+    });
+  }
+
+  late final _$totalImagesAtom =
+      Atom(name: '_AllImagesControllerBase.totalImages', context: context);
+
+  @override
+  int get totalImages {
+    _$totalImagesAtom.reportRead();
+    return super.totalImages;
+  }
+
+  @override
+  set totalImages(int value) {
+    _$totalImagesAtom.reportWrite(value, super.totalImages, () {
+      super.totalImages = value;
+    });
+  }
+
+  late final _$imagesCountAtom =
+      Atom(name: '_AllImagesControllerBase.imagesCount', context: context);
+
+  @override
+  int get imagesCount {
+    _$imagesCountAtom.reportRead();
+    return super.imagesCount;
+  }
+
+  @override
+  set imagesCount(int value) {
+    _$imagesCountAtom.reportWrite(value, super.imagesCount, () {
+      super.imagesCount = value;
+    });
+  }
+
+  late final _$getUserImagesCountAsyncAction = AsyncAction(
+      '_AllImagesControllerBase.getUserImagesCount',
+      context: context);
+
+  @override
+  Future<void> getUserImagesCount() {
+    return _$getUserImagesCountAsyncAction
+        .run(() => super.getUserImagesCount());
+  }
+
+  late final _$getTotalImagesCountAsyncAction = AsyncAction(
+      '_AllImagesControllerBase.getTotalImagesCount',
+      context: context);
+
+  @override
+  Future<void> getTotalImagesCount() {
+    return _$getTotalImagesCountAsyncAction
+        .run(() => super.getTotalImagesCount());
+  }
+
   late final _$_AllImagesControllerBaseActionController =
       ActionController(name: '_AllImagesControllerBase', context: context);
 
@@ -40,9 +108,23 @@ mixin _$AllImagesController on _AllImagesControllerBase, Store {
   }
 
   @override
+  dynamic getImagesCount() {
+    final _$actionInfo = _$_AllImagesControllerBaseActionController.startAction(
+        name: '_AllImagesControllerBase.getImagesCount');
+    try {
+      return super.getImagesCount();
+    } finally {
+      _$_AllImagesControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-allImages: ${allImages}
+allImages: ${allImages},
+totalImagesUser: ${totalImagesUser},
+totalImages: ${totalImages},
+imagesCount: ${imagesCount}
     ''';
   }
 }

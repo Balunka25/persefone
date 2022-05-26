@@ -21,4 +21,38 @@ abstract class _AllImagesControllerBase with Store {
   void getPostsFromMobxWidget() {
     allImages = ObservableFuture(imageRepository.getAllImages());
   }
+
+  @observable
+  int totalImagesUser = 0;
+
+  @action
+  Future<void> getUserImagesCount() async{
+    var currentUser = FirebaseAuth.instance.currentUser;
+    QuerySnapshot _userImages = await FirebaseFirestore.instance
+        .collection("users")
+        .doc(currentUser!.uid)
+        .collection("images")
+        .get();
+    List<DocumentSnapshot> _userImagesCount = _userImages.docs;
+    totalImagesUser = _userImagesCount.length;
+  }
+
+  @observable
+  int totalImages = 0;
+
+  @action
+  Future<void> getTotalImagesCount() async{
+    QuerySnapshot _totalImages =
+        await FirebaseFirestore.instance.collection("images").get();
+    List<DocumentSnapshot> _totalImagesCount = _totalImages.docs;
+    totalImages = _totalImagesCount.length;
+  }
+
+  @observable
+  int imagesCount = 0;
+
+  @action
+  getImagesCount(){
+    imagesCount = totalImages - totalImagesUser;
+  }
 }
