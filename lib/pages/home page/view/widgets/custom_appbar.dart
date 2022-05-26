@@ -16,31 +16,37 @@ class CustomAppbar extends StatelessWidget with PreferredSizeWidget {
           bottomRight: Radius.circular(30.0),
         ),
       ),
-        child: AppBar(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(
-              bottom: Radius.circular(40),
-            ),
-          ),
-          toolbarHeight: 150,
-          backgroundColor: MyColors.primarygreen,
-          elevation: 0,
-          centerTitle: true,
-          title: Column(
-            children: [
-              const SizedBox(height: 10),
-              Image.asset(
-                'lib/images/logo.png',
-                height: 130,
-                width: 150,
-              ),
-            ],
+      child: AppBar(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(40),
           ),
         ),
-      );
+        toolbarHeight: 150,
+        backgroundColor: MyColors.primarygreen,
+        elevation: 0,
+        centerTitle: true,
+        // actions: [
+        //   Builder(builder: (context) {
+        //     return IconButton(
+        //         onPressed: () => Scaffold.of(context).openEndDrawer(),
+        //         icon: const Icon(Icons.menu));
+        //   })
+        // ],
+        title: Column(
+          children: [
+            const SizedBox(height: 10),
+            Image.asset(
+              'lib/images/logo.png',
+              height: 130,
+              width: 150,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
   Size get preferredSize => const Size.fromHeight(150.0);
 }
-
