@@ -46,7 +46,7 @@ class _ChangePassPageState extends State<ChangePassPage> {
                   child: Observer(builder: (_) {
                     return TextField(
                       style: const TextStyle(color: MyColors.primaryyellow),
-                      // onChanged: _controller.changeName,
+                      onChanged: _controller.changePassword,
                       decoration: InputDecoration(
                           labelText: 'Nova Senha',
                           focusedBorder: const UnderlineInputBorder(
@@ -68,6 +68,7 @@ class _ChangePassPageState extends State<ChangePassPage> {
                 child: Observer(
                   builder: (_) {
                     return TextField(
+                      onChanged: _controller.changeConfirmPassword,
                       style: const TextStyle(color: MyColors.primaryyellow),
                       // onChanged: _controller.changeEmail,
                       decoration: InputDecoration(
@@ -97,7 +98,7 @@ class _ChangePassPageState extends State<ChangePassPage> {
                           dialogBox(
                             context,
                             "SUCESSO",
-                            "Logado!",
+                            "Atualizado!",
                             "OK",
                             () => Navigator.push(
                               context,

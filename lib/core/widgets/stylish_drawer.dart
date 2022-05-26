@@ -2,8 +2,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import 'package:persefone/design/my_colors.dart';
+import 'package:persefone/pages/changepass%20page/view/changepass_page.dart';
 import 'package:persefone/pages/home%20page/view/home_page.dart';
 import 'package:persefone/pages/login%20page/view/login_page.dart';
+import 'package:persefone/pages/profile%20page/view/profile_page.dart';
 
 class StylishDrawer extends StatefulWidget {
   const StylishDrawer({Key? key}) : super(key: key);
@@ -31,7 +33,7 @@ class _StylishDrawerState extends State<StylishDrawer> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 20),
+              margin: const EdgeInsets.only(left: 20),
               child: ListView(
                 children: <Widget>[
                   InkWell(
@@ -39,7 +41,7 @@ class _StylishDrawerState extends State<StylishDrawer> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: ((context) => const HomePage())));
+                              builder: ((context) => const ProfilePage())));
                     },
                     child: Stack(
                       children: [
@@ -68,7 +70,12 @@ class _StylishDrawerState extends State<StylishDrawer> {
                   ),
                   const Spacer(),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => const HomePage())));
+                    },
                     child: Stack(
                       children: [
                         Container(
@@ -86,7 +93,6 @@ class _StylishDrawerState extends State<StylishDrawer> {
                           right: 150,
                           child: Text(
                             "Favoritos",
-                            
                             style: Theme.of(context)
                                 .textTheme
                                 .headline3!
@@ -98,7 +104,12 @@ class _StylishDrawerState extends State<StylishDrawer> {
                   ),
                   const Spacer(),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => const ChangePassPage())));
+                    },
                     child: Stack(
                       children: [
                         Container(
@@ -106,8 +117,7 @@ class _StylishDrawerState extends State<StylishDrawer> {
                           height: 150,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage(
-                                  "lib/images/explorar_icon.png"),
+                              image: AssetImage("lib/images/explorar_icon.png"),
                             ),
                           ),
                         ),
@@ -116,7 +126,6 @@ class _StylishDrawerState extends State<StylishDrawer> {
                           right: 120,
                           child: Text(
                             "Mudar Senha",
-                            
                             style: Theme.of(context)
                                 .textTheme
                                 .headline3!
@@ -126,23 +135,23 @@ class _StylishDrawerState extends State<StylishDrawer> {
                       ],
                     ),
                   ),
-                  const SizedBox(height:40),
+                  const SizedBox(height: 40),
                   ListTile(
                     leading: const Icon(
                       Icons.logout,
                       color: MyColors.primarydark,
-                      size: 10,
+                      size: 15,
                     ),
                     title: const Text("Sair",
                         style: TextStyle(
                             color: MyColors.primarydark, fontSize: 10)),
                     onTap: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const LoginPage(),
-                        ),),
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginPage(),
+                      ),
+                    ),
                   ),
-                 
                 ],
               ),
             )

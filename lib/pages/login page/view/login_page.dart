@@ -98,22 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                   );
                 }),
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 24.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    InkWell(
-                      splashColor: MyColors.primaryyellow,
-                      onTap: () {},
-                      child: Text(
-                        "Alterar Senha",
-                        style: Theme.of(context).textTheme.headline4,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              
               const SizedBox(
                 height: 80,
               ),
