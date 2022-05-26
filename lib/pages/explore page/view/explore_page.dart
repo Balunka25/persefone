@@ -19,18 +19,17 @@ class ExplorePage extends StatefulWidget {
 
 class _ExplorePageState extends State<ExplorePage> {
   final AllImagesController controller = AllImagesController();
-   @override
+  @override
   void initState() {
     _setupPage();
   }
 
   Future<void> _setupPage() async {
-    await controller.getUserImagesCount();
     await controller.getTotalImagesCount();
+    await controller.getUserImagesCount();
     await controller.getImagesCount();
     await controller.getAllImages();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -44,67 +43,67 @@ class _ExplorePageState extends State<ExplorePage> {
          drawer: const StylishDrawer(),
         backgroundColor: Colors.transparent,
         appBar: CustomAppbar(),
-        body:   Observer(
-          builder: (context) {
-            return Padding(
-                padding: const EdgeInsets.all(32),
-                child: ObserverFuture<List<ImageModel>, Exception>(
-                  autoInitialize: true,
-                  fetchData: controller.getPostsFromMobxWidget,
-                  observableFuture: () => controller.allImages,
-                  onData: (_, data) {
-                    if (data.length == 0) {
-                      return const Center(
-                          child: Text("Você não criou nenhum post"));
-                    }
-                    return GridView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 15,
-                        mainAxisSpacing: 15,
-                      ),
-                      itemCount: controller.imagesCount,
-                      itemBuilder: (context, index) {
-                        var post = data[index];
-                        return CachedNetworkImage(
-                          imageUrl: post.url,
-                          imageBuilder: (context, imageProvider) => Container(
-                            width: 300,
-                            height: 400,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(
-                                image: imageProvider,
-                                fit: BoxFit.cover,
-                              ),
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10)),
+        body: Observer(builder: (context) {
+          return Padding(
+              padding: const EdgeInsets.all(32),
+              child: ObserverFuture<List<ImageModel>, Exception>(
+                autoInitialize: true,
+                fetchData: controller.getPostsFromMobxWidget,
+                observableFuture: () => controller.allImages,
+                onData: (_, data) {
+                  if (data.length == 0) {
+                    return const Center(
+                        child: Text("Ninguém compartilhou plantas :("));
+                  }
+                  return GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 30,
+                      mainAxisSpacing: 15,
+                    ),
+                    itemCount: controller.imagesCount,
+                    itemBuilder: (context, index) {
+                      var post = data[index];
+                      return CachedNetworkImage(
+                        imageUrl: post.url,
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
+                            ),
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(10),
                             ),
                           ),
-                          progressIndicatorBuilder:
-                              (context, url, downloadProgress) => Center(
-                            child: CircularProgressIndicator(
-                                value: downloadProgress.progress),
-                          ),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                        );
-                      },
-                    );
-                  },
-                  onNull: (_) => const Text('Nenhum post criado'),
-                  onError: (_, error) =>
-                      const Text('Ocorreu um erro ao pesquisar os posts'),
-                  onPending: (_) => const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.blue,
-                    ),
+                        ),
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        height: MediaQuery.of(context).size.width * 0.9,
+                        progressIndicatorBuilder:
+                            (context, url, downloadProgress) => Center(
+                          child: CircularProgressIndicator(
+                              value: downloadProgress.progress),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                      );
+                    },
+                  );
+                },
+                onNull: (_) => const Text('Nenhum post criado'),
+                onError: (_, error) =>
+                    const Text('Ocorreu um erro ao pesquisar os posts'),
+                onPending: (_) => const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.blue,
                   ),
-                  onUnstarted: (_) => const Text(''),
-                ));
-          }
-        ),
+                ),
+                onUnstarted: (_) => const Text(''),
+              ));
+        }),
       ),
     );
   }
