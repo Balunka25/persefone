@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:persefone/core/widgets/stylish_drawer.dart';
 import 'package:persefone/pages/home%20page/view/widgets/custom_appbar.dart';
 
 import '../../profile page/view/profile_page.dart';
@@ -22,6 +23,7 @@ class _HomePageState extends State<HomePage> {
             image: AssetImage("lib/images/backgroud.png"), fit: BoxFit.cover),
       ),
       child: Scaffold(
+        drawer: const StylishDrawer(),
           backgroundColor: Colors.transparent,
           appBar: CustomAppbar(),
           body: Column(
