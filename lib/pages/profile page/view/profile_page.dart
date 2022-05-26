@@ -41,153 +41,197 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-      return Observer(
-        builder: (context) {
-          return Container(
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("lib/images/backgroud.png"),
-                    fit: BoxFit.cover),
-              ),
-              child: GestureDetector(
-                onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-                child: Scaffold(
-                    backgroundColor: Colors.transparent,
-                    body: NestedScrollView(
-                      floatHeaderSlivers: true,
-                      headerSliverBuilder: (context, innerBoxIsScrolled) =>
-                          [const ProfilePageAppBar()],
-                      body: SingleChildScrollView(
-                        child: Column(
+    return Observer(builder: (context) {
+      return Container(
+          width: double.infinity,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("lib/images/backgroud.png"),
+                fit: BoxFit.cover),
+          ),
+          child: GestureDetector(
+            onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+            child: Scaffold(
+                backgroundColor: Colors.transparent,
+                body: NestedScrollView(
+                  floatHeaderSlivers: true,
+                  headerSliverBuilder: (context, innerBoxIsScrolled) =>
+                      [const ProfilePageAppBar()],
+                  body: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 30),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const SizedBox(height: 30),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(controller.userName.toUpperCase(), style: Theme.of(context).textTheme.headline2!.copyWith(color: MyColors.primarydark, fontWeight: FontWeight.bold),)
-                              ],
+                            Text(
+                              controller.userName.toUpperCase(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline2!
+                                  .copyWith(
+                                      color: MyColors.primarydark,
+                                      fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              height: 80,
+                              width: 80,
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                    image: AssetImage(
+                                        "lib/images/profile_page_vaso.png"),
+                                    fit: BoxFit.cover),
+                              ),
                             ),
-                            Row(
-                              children: [
-                                Container(
-                                  height: 80,
-                                  width: 80,
-                                  decoration: const BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            "lib/images/profile_page_vaso.png"),
-                                        fit: BoxFit.cover),
+                            Text(
+                              controller.userEmail,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline4!
+                                  .copyWith(color: MyColors.primarydark),
+                            )
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const SizedBox(width: 40),
+                            Text(
+                              "Minhas Plantas",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline4!
+                                  .copyWith(color: MyColors.primarydark),
+                            ),
+                            IconButton(
+                                icon: Icon(
+                                  Icons.add_box_outlined,
+                                  size: 30,
+                                  color: Colors.green[700],
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: ((context) =>
+                                              const UploadImagePage())));
+                                }),
+                          ],
+                        ),
+                        Padding(
+                            padding: const EdgeInsets.all(32),
+                            child: ObserverFuture<List<ImageModel>, Exception>(
+                              autoInitialize: true,
+                              fetchData: controller.getPostsFromMobxWidget,
+                              observableFuture: () => controller.imagesUser,
+                              onData: (_, data) {
+                                if (data.length == 0) {
+                                  return const Center(
+                                      child: Text(
+                                          "Você não compartilhou nenhuma planta."));
+                                }
+                                return GridView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 2,
+                                    crossAxisSpacing: 30,
+                                    mainAxisSpacing: 15,
                                   ),
-                                ),
-                                Text(
-                                  controller.userEmail,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline4!
-                                      .copyWith(color: MyColors.primarydark),
-                                )
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const SizedBox(width: 40),
-                                Text(
-                                  "Minhas Plantas",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headline4!
-                                      .copyWith(color: MyColors.primarydark),
-                                ),
-                                IconButton(
-                                    icon: Icon(
-                                      Icons.add_box_outlined,
-                                      size: 30,
-                                      color: Colors.green[700],
-                                    ),
-                                    onPressed: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: ((context) =>
-                                                  const UploadImagePage())));
-                                    }),
-                              ],
-                            ),
-                            Padding(
-                                padding: const EdgeInsets.all(32),
-                                child: ObserverFuture<List<ImageModel>, Exception>(
-                                  autoInitialize: true,
-                                  fetchData: controller.getPostsFromMobxWidget,
-                                  observableFuture: () => controller.imagesUser,
-                                  onData: (_, data) {
-                                    if (data.length == 0) {
-                                      return const Center(
-                                          child:
-                                              Text("Você não criou nenhum post"));
-                                    }
-                                    return GridView.builder(
-                                      physics: const NeverScrollableScrollPhysics(),
-                                      shrinkWrap: true,
-                                      gridDelegate:
-                                          const SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        crossAxisSpacing: 15,
-                                        mainAxisSpacing: 15,
-                                      ),
-                                      itemCount: controller.totalImages,
-                                      itemBuilder: (context, index) {
-                                        var post = data[index];
-                                        return CachedNetworkImage(
+                                  itemCount: controller.totalImages,
+                                  itemBuilder: (context, index) {
+                                    var post = data[index];
+                                    return ListTile(
+                                        title: CachedNetworkImage(
                                           imageUrl: post.url,
-                                          imageBuilder: (context, imageProvider) =>
-                                              Container(
-                                            width: 300,
-                                            height: 400,
+                                          imageBuilder:
+                                              (context, imageProvider) =>
+                                                  Container(
                                             decoration: BoxDecoration(
                                               image: DecorationImage(
                                                 image: imageProvider,
                                                 fit: BoxFit.cover,
                                               ),
-                                              borderRadius: const BorderRadius.all(
-                                                  Radius.circular(10)),
+                                              borderRadius:
+                                                  const BorderRadius.all(
+                                                      Radius.circular(10)),
                                             ),
                                           ),
-                                          progressIndicatorBuilder:
-                                              (context, url, downloadProgress) =>
-                                                  Center(
+                                          progressIndicatorBuilder: (context,
+                                                  url, downloadProgress) =>
+                                              Center(
                                             child: CircularProgressIndicator(
-                                                value: downloadProgress.progress),
+                                                value:
+                                                    downloadProgress.progress),
                                           ),
                                           errorWidget: (context, url, error) =>
                                               const Icon(Icons.error),
-                                        );
-                                      },
-                                    );
+                                        ),
+                                        onLongPress: () {
+                                          showModalBottomSheet<void>(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return Wrap(children: <Widget>[
+                                                  ListTile(
+                                                      leading: const Icon(
+                                                          Icons.delete),
+                                                      title:
+                                                          const Text('Delete'),
+                                                      onTap: () async {
+                                                        var currentUser =
+                                                            FirebaseAuth
+                                                                .instance
+                                                                .currentUser;
+                                                        await FirebaseFirestore
+                                                            .instance
+                                                            .collection("users")
+                                                            .doc(currentUser!
+                                                                .uid)
+                                                            .collection(
+                                                                "images")
+                                                            .doc(post.id)
+                                                            .delete();
+
+                                                        await FirebaseFirestore
+                                                            .instance
+                                                            .collection(
+                                                                "images")
+                                                            .doc(post.id)
+                                                            .delete();
+
+                                                        await Navigator.pushReplacement(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                                builder: (BuildContext
+                                                                        context) =>
+                                                                    const ProfilePage()));
+                                                      })
+                                                ]);
+                                              });
+                                        });
                                   },
-                                  onNull: (_) => const Text('Nenhum post criado'),
-                                  onError: (_, error) => const Text(
-                                      'Ocorreu um erro ao pesquisar os posts'),
-                                  onPending: (_) => const Center(
-                                    child: CircularProgressIndicator(
-                                      color: Colors.blue,
-                                    ),
-                                  ),
-                                  onUnstarted: (_) => const Text(''),
-                                )),
-                          ],
-                        ),
-                      ),
-                    )),
-              ));
-        }
-      );
-    }
+                                );
+                              },
+                              onNull: (_) => const Text('Nenhum post criado'),
+                              onError: (_, error) => const Text(
+                                  'Ocorreu um erro ao pesquisar os posts'),
+                              onPending: (_) => const Center(
+                                child: CircularProgressIndicator(
+                                  color: Colors.blue,
+                                ),
+                              ),
+                              onUnstarted: (_) => const Text(''),
+                            )),
+                      ],
+                    ),
+                  ),
+                )),
+          ));
+    });
   }
-
-  
-
-
-  
-
+}

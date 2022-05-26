@@ -53,14 +53,14 @@ class _ExplorePageState extends State<ExplorePage> {
                   onData: (_, data) {
                     if (data.length == 0) {
                       return const Center(
-                          child: Text("Você não criou nenhum post"));
+                          child: Text("Você não compartilhou nenhuma planta."));
                     }
                     return GridView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
-                        crossAxisSpacing: 15,
+                        crossAxisSpacing: 30,
                         mainAxisSpacing: 15,
                       ),
                       itemCount: controller.imagesCount,
@@ -69,8 +69,6 @@ class _ExplorePageState extends State<ExplorePage> {
                         return CachedNetworkImage(
                           imageUrl: post.url,
                           imageBuilder: (context, imageProvider) => Container(
-                            width: 300,
-                            height: 400,
                             decoration: BoxDecoration(
                               image: DecorationImage(
                                 image: imageProvider,
