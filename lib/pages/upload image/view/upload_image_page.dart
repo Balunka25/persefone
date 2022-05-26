@@ -80,26 +80,6 @@ class _UploadImagePageState extends State<UploadImagePage> {
                         height: 300,
                         fit: BoxFit.cover,
                       )
-                    // : CachedNetworkImage(
-                    //     progressIndicatorBuilder:
-                    //         (context, url, downloadProgress) =>
-                    //             CircularProgressIndicator(
-                    //                 value: downloadProgress.progress),
-                    //     errorWidget: (context, url, error) =>
-                    //         const Icon(Icons.error),
-                    //     imageUrl:
-                    //         "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/1200px-Picture_icon_BLACK.svg.png",
-                    //     imageBuilder: (context, imageProvider) => Container(
-                    //       height: 320,
-                    //       width: 320,
-                    //       decoration: BoxDecoration(
-                    //         shape: BoxShape.rectangle,
-                    //         borderRadius: BorderRadius.circular(10),
-                    //         image: DecorationImage(
-                    //             image: imageProvider, fit: BoxFit.cover),
-                    //       ),
-                    //     ),
-                    //   ),
                     : Container(
                         height: 300,
                         width: 200,
@@ -233,6 +213,16 @@ class _UploadImagePageState extends State<UploadImagePage> {
                           "url": imageUrl,
                           "id": datetime,
                           "owner_id": currentUser!.uid
+                        },
+                      );
+                      await FirebaseFirestore.instance
+                          .collection("images")
+                          .doc(datetime)
+                          .set(
+                        {
+                          "url": imageUrl,
+                          "id": datetime,
+                          "owner_id": currentUser.uid
                         },
                       );
                       Navigator.pushReplacement(
