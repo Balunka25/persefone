@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 import 'package:persefone/design/my_colors.dart';
+import 'package:persefone/pages/changepass%20page/controller/changepass_controller.dart';
+import 'package:persefone/pages/login%20page/view/login_page.dart';
+
+import '../../../core/widgets/dialog_box.dart';
 
 class ChangePassPage extends StatefulWidget {
   const ChangePassPage({Key? key}) : super(key: key);
@@ -11,7 +15,7 @@ class ChangePassPage extends StatefulWidget {
 }
 
 class _ChangePassPageState extends State<ChangePassPage> {
-  // final _controller = ChangePassController();
+  final _controller = ChangePassController();
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +90,57 @@ class _ChangePassPageState extends State<ChangePassPage> {
                 width: 200,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () {},
+                   onPressed: () async {
+                      if (_controller.areCredentialsValid) {
+                        try {
+                          await _controller.resetPassword();
+                          dialogBox(
+                            context,
+                            "SUCESSO",
+                            "Logado!",
+                            "OK",
+                            () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const LoginPage(),
+                              ),
+                            ),
+                          );
+                        } catch (error) {
+                          if (error == 'weak-password') {
+                            dialogBox(context, "ERRO:", "Senha fraca!",
+                                "OK", () => Navigator.pop(context));
+                          }else {
+                            dialogBox(context, "ERRO:", "Erro ao resetar senha!", "OK",
+                                () => Navigator.pop(context));
+                          }
+                        }
+                      } else if (!_controller.isPasswordConfirmationValid) {
+                        dialogBox(
+                          context,
+                          "ERRO:",
+                          "Senhas não conferem!",
+                          "OK",
+                          () => Navigator.pop(context),
+                        );
+                      } else if (!_controller.isPasswordValid) {
+                        dialogBox(
+                          context,
+                          "ERRO:",
+                          "Senha fraca!",
+                          "OK",
+                          () => Navigator.pop(context),
+                        );
+                      } else {
+                        dialogBox(
+                          context,
+                          "ERRO:",
+                          "Todos os campos devem ser preenchidos",
+                          "OK",
+                          () => Navigator.pop(context),
+                        );
+                      }
+                    },
                   child: Text("Confirmar",
                       style: Theme.of(context)
                           .textTheme
