@@ -20,20 +20,22 @@ class _StylishDrawerState extends State<StylishDrawer> {
     return ClipPath(
       clipper: DrawerStyle(),
       child: Container(
-        width: 300,
-        height: 700,
+        width: 500,
+        height: 800,
         child: Stack(
           children: <Widget>[
             BackdropFilter(
               filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
               child: Container(
                 decoration: BoxDecoration(
+                  image: DecorationImage(image: AssetImage("")),
                     color: const Color.fromARGB(255, 255, 247, 255)
                         .withOpacity(0.5)),
               ),
             ),
+            const SizedBox(height: 40,),
             Container(
-              margin: const EdgeInsets.only(left: 20),
+              margin: const EdgeInsets.only(top: 20),
               child: ListView(
                 children: <Widget>[
                   InkWell(
@@ -79,6 +81,7 @@ class _StylishDrawerState extends State<StylishDrawer> {
                     child: Stack(
                       children: [
                         Container(
+                           padding: const EdgeInsets.only(right:64),
                           width: 180,
                           height: 180,
                           decoration: const BoxDecoration(
@@ -90,7 +93,7 @@ class _StylishDrawerState extends State<StylishDrawer> {
                         ),
                         Positioned(
                           top: 150,
-                          right: 150,
+                          left: 150,
                           child: Text(
                             "Favoritos",
                             style: Theme.of(context)
@@ -165,15 +168,27 @@ class _StylishDrawerState extends State<StylishDrawer> {
 class DrawerStyle extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    Path path = Path();
-    path.lineTo(0, size.height);
-    path.quadraticBezierTo(
-        size.width / 4, size.height, size.width / 2, size.height - 40);
-    path.quadraticBezierTo(
-        size.width - 50, size.height - 80, size.width, size.height);
-    path.quadraticBezierTo(size.width - 100, size.height / 2, size.width, 0);
-    path.quadraticBezierTo(size.width / 2, 30, 0, 0);
-    return path;
+
+    Paint paint0 = Paint()
+      ..color = const Color.fromARGB(255, 1, 178, 37)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 6.72;
+
+     Path path0 = Path();
+    path0.moveTo(size.width*0.0050000,size.height*0.9925690);
+    path0.quadraticBezierTo(size.width*0.6735167,size.height*0.8018843,size.width*0.6109833,size.height*0.4071789);
+    path0.cubicTo(size.width*0.6268667,size.height*0.3555600,size.width*0.4626833,size.height*0.1088509,size.width*0.4132500,size.height*0.0094082);
+    path0.quadraticBezierTo(size.width*0.2423833,size.height*0.1355892,size.width*0.0050000,size.height*0.1963907);
+    
+    // Path path = Path();
+    // path.lineTo(0, size.height);
+    // path.quadraticBezierTo(
+    //     size.width / 4, size.height, size.width / 2, size.height - 40);
+    // path.quadraticBezierTo(
+    //     size.width - 50, size.height - 80, size.width, size.height);
+    // path.quadraticBezierTo(size.width - 100, size.height / 2, size.width, 0);
+    // path.quadraticBezierTo(size.width / 2, 30, 0, 0);
+    return path0;
   }
 
   @override
