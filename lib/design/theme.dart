@@ -25,7 +25,7 @@ ThemeData theme() {
       ),
       headline4: TextStyle(
         color: MyColors.primarywhite,
-        fontWeight: FontWeight.normal,
+        fontWeight: FontWeight.bold,
         fontSize: 18,
         fontFamily: GoogleFonts.novaCut().fontFamily,
       ),
