@@ -140,80 +140,82 @@ class _ProfilePageState extends State<ProfilePage> {
                                   gridDelegate:
                                       const SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
-                                    crossAxisSpacing: 30,
-                                    mainAxisSpacing: 15,
+                                    crossAxisSpacing: 20,
+                                    mainAxisSpacing: 5,
                                   ),
                                   itemCount: controller.totalImages,
                                   itemBuilder: (context, index) {
                                     var post = data[index];
-                                    return ListTile(
-                                        title: CachedNetworkImage(
-                                          imageUrl: post.url,
-                                          imageBuilder:
-                                              (context, imageProvider) =>
-                                                  Container(
-                                            decoration: BoxDecoration(
-                                              image: DecorationImage(
-                                                image: imageProvider,
-                                                fit: BoxFit.cover,
-                                              ),
-                                              borderRadius:
-                                                  const BorderRadius.all(
-                                                      Radius.circular(10)),
+                                    return GestureDetector(
+                                      child: CachedNetworkImage(
+                                        imageUrl: post.url,
+                                        imageBuilder:
+                                            (context, imageProvider) =>
+                                                Container(
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              image: imageProvider,
+                                              fit: BoxFit.cover,
+                                            ),
+                                            borderRadius:
+                                                const BorderRadius.all(
+                                              Radius.circular(10),
                                             ),
                                           ),
-                                          progressIndicatorBuilder: (context,
-                                                  url, downloadProgress) =>
-                                              Center(
-                                            child: CircularProgressIndicator(
-                                                value:
-                                                    downloadProgress.progress),
-                                          ),
-                                          errorWidget: (context, url, error) =>
-                                              const Icon(Icons.error),
                                         ),
-                                        onLongPress: () {
-                                          showModalBottomSheet<void>(
-                                              context: context,
-                                              builder: (BuildContext context) {
-                                                return Wrap(children: <Widget>[
-                                                  ListTile(
-                                                      leading: const Icon(
-                                                          Icons.delete),
-                                                      title:
-                                                          const Text('Delete'),
-                                                      onTap: () async {
-                                                        var currentUser =
-                                                            FirebaseAuth
-                                                                .instance
-                                                                .currentUser;
-                                                        await FirebaseFirestore
-                                                            .instance
-                                                            .collection("users")
-                                                            .doc(currentUser!
-                                                                .uid)
-                                                            .collection(
-                                                                "images")
-                                                            .doc(post.id)
-                                                            .delete();
+                                        width:
+                                            MediaQuery.of(context).size.width *
+                                                0.9,
+                                        height:
+                                            MediaQuery.of(context).size.width *
+                                                0.9,
+                                        progressIndicatorBuilder:
+                                            (context, url, downloadProgress) =>
+                                                Center(
+                                          child: CircularProgressIndicator(
+                                              value: downloadProgress.progress),
+                                        ),
+                                        errorWidget: (context, url, error) =>
+                                            const Icon(Icons.error),
+                                      ),
+                                      onLongPress: () {
+                                        showModalBottomSheet<void>(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return Wrap(children: <Widget>[
+                                                ListTile(
+                                                    leading: const Icon(
+                                                        Icons.delete),
+                                                    title: const Text('Delete'),
+                                                    onTap: () async {
+                                                      var currentUser =
+                                                          FirebaseAuth.instance
+                                                              .currentUser;
+                                                      await FirebaseFirestore
+                                                          .instance
+                                                          .collection("users")
+                                                          .doc(currentUser!.uid)
+                                                          .collection("images")
+                                                          .doc(post.id)
+                                                          .delete();
 
-                                                        await FirebaseFirestore
-                                                            .instance
-                                                            .collection(
-                                                                "images")
-                                                            .doc(post.id)
-                                                            .delete();
+                                                      await FirebaseFirestore
+                                                          .instance
+                                                          .collection("images")
+                                                          .doc(post.id)
+                                                          .delete();
 
-                                                        await Navigator.pushReplacement(
-                                                            context,
-                                                            MaterialPageRoute(
-                                                                builder: (BuildContext
-                                                                        context) =>
-                                                                    const ProfilePage()));
-                                                      })
-                                                ]);
-                                              });
-                                        });
+                                                      await Navigator.pushReplacement(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder: (BuildContext
+                                                                      context) =>
+                                                                  const ProfilePage()));
+                                                    })
+                                              ]);
+                                            });
+                                      },
+                                    );
                                   },
                                 );
                               },
