@@ -25,6 +25,70 @@ mixin _$UserImageController on _UserImageControllerBase, Store {
     });
   }
 
+  late final _$userEmailAtom =
+      Atom(name: '_UserImageControllerBase.userEmail', context: context);
+
+  @override
+  String get userEmail {
+    _$userEmailAtom.reportRead();
+    return super.userEmail;
+  }
+
+  @override
+  set userEmail(String value) {
+    _$userEmailAtom.reportWrite(value, super.userEmail, () {
+      super.userEmail = value;
+    });
+  }
+
+  late final _$userNameAtom =
+      Atom(name: '_UserImageControllerBase.userName', context: context);
+
+  @override
+  String get userName {
+    _$userNameAtom.reportRead();
+    return super.userName;
+  }
+
+  @override
+  set userName(String value) {
+    _$userNameAtom.reportWrite(value, super.userName, () {
+      super.userName = value;
+    });
+  }
+
+  late final _$totalImagesAtom =
+      Atom(name: '_UserImageControllerBase.totalImages', context: context);
+
+  @override
+  int get totalImages {
+    _$totalImagesAtom.reportRead();
+    return super.totalImages;
+  }
+
+  @override
+  set totalImages(int value) {
+    _$totalImagesAtom.reportWrite(value, super.totalImages, () {
+      super.totalImages = value;
+    });
+  }
+
+  late final _$getEmailAsyncAction =
+      AsyncAction('_UserImageControllerBase.getEmail', context: context);
+
+  @override
+  Future<void> getEmail() {
+    return _$getEmailAsyncAction.run(() => super.getEmail());
+  }
+
+  late final _$getUserNameAsyncAction =
+      AsyncAction('_UserImageControllerBase.getUserName', context: context);
+
+  @override
+  Future<void> getUserName() {
+    return _$getUserNameAsyncAction.run(() => super.getUserName());
+  }
+
   late final _$_UserImageControllerBaseActionController =
       ActionController(name: '_UserImageControllerBase', context: context);
 
@@ -42,7 +106,10 @@ mixin _$UserImageController on _UserImageControllerBase, Store {
   @override
   String toString() {
     return '''
-imagesUser: ${imagesUser}
+imagesUser: ${imagesUser},
+userEmail: ${userEmail},
+userName: ${userName},
+totalImages: ${totalImages}
     ''';
   }
 }
