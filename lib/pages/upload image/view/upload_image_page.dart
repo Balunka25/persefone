@@ -1,12 +1,13 @@
 import 'dart:io';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../profile page/view/profile_page.dart';
 
 class UploadImagePage extends StatefulWidget with PreferredSizeWidget {
   const UploadImagePage({Key? key}) : super(key: key);
@@ -20,6 +21,13 @@ class UploadImagePage extends StatefulWidget with PreferredSizeWidget {
 
 class _UploadImagePageState extends State<UploadImagePage> {
   File? image;
+  String? userId;
+
+  @override
+  void initState() {
+    super.initState();
+    getUserId();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -214,28 +222,24 @@ class _UploadImagePageState extends State<UploadImagePage> {
                           .ref()
                           .child(ref)
                           .getDownloadURL();
-                      // await FirebaseFirestore.instance
-                      //     .collection("users")
-                      //     .doc(widget.currentUserModel.sId)
-                      //     .collection("postdata")
-                      //     .doc(datetime)
-                      //     .set(
-                      //   {
-                      //     "url": imageUrl,
-                      //     "date": datetime,
-                      //     // "owner_id": widget.currentUserModel.sId
-                      //   },
+                      var currentUser = FirebaseAuth.instance.currentUser;
                       await FirebaseFirestore.instance
+                          .collection("users")
+                          .doc(userId)
                           .collection("images")
                           .doc(datetime)
                           .set(
                         {
                           "url": imageUrl,
                           "id": datetime,
-                          // "owner_id": widget.currentUserModel.sId
+                          "owner_id": currentUser!.uid
                         },
                       );
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const ProfilePage()));
                     } on FirebaseException catch (e) {
                       throw Exception("Erro: $e");
                     }
@@ -252,5 +256,16 @@ class _UploadImagePageState extends State<UploadImagePage> {
         ),
       ),
     );
+  }
+  Future<void> getUserId() async {
+    var currentUser = FirebaseAuth.instance.currentUser;
+    final DocumentReference document =
+        FirebaseFirestore.instance.collection("users").doc(currentUser!.uid);
+    await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
+      Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
+      setState(() {
+        userId = data['id'];
+      });
+    });
   }
 }

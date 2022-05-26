@@ -1,8 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mobx/mobx.dart';
-
-import '../../../core/models/user_model.dart';
 part 'login_controller.g.dart';
 
 class LoginController = _LoginControllerBase with _$LoginController;
