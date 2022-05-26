@@ -138,12 +138,16 @@ class _RegisterPageState extends State<RegisterPage> {
                               onPressed: _controller
                                   .setPasswordConfirmationVisibility),
                           labelText: 'Confirmar senha',
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: MyColors.primaryyellow, width: 2),
+                          ),
                           enabledBorder: const UnderlineInputBorder(
                             borderSide: BorderSide(
-                                color: MyColors.primarywhite, width: 2),
-                          ),
+                                color: MyColors.primarywhite, width: 2),),
                           labelStyle: Theme.of(context).textTheme.headline2),
                     );
+                    
                   })),
               SizedBox(
                 width: 260,

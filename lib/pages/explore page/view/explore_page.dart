@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx_widget/mobx_widget.dart';
+import 'package:persefone/core/widgets/stylish_drawer.dart';
 
 import '../../home page/view/widgets/custom_appbar.dart';
 import '../../profile page/models/image_model.dart';
@@ -40,6 +41,7 @@ class _ExplorePageState extends State<ExplorePage> {
             image: AssetImage("lib/images/backgroud.png"), fit: BoxFit.cover),
       ),
       child: Scaffold(
+         drawer: const StylishDrawer(),
         backgroundColor: Colors.transparent,
         appBar: CustomAppbar(),
         body:   Observer(
