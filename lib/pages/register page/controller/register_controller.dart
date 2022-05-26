@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mobx/mobx.dart';
 import 'package:persefone/core/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -83,6 +82,7 @@ abstract class _RegisterControllerBase with Store {
         "id": userCredential.user!.uid,
         "email": email,
         "name": name,
+        "password": password,
       },
     ); 
     return userCredential;

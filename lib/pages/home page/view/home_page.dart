@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:persefone/core/widgets/stylish_drawer.dart';
 import 'package:persefone/pages/home%20page/view/widgets/custom_appbar.dart';
 
+import '../../explore page/view/explore_page.dart';
 import '../../profile page/view/profile_page.dart';
 import 'widgets/custom_appbar.dart';
 
@@ -34,6 +35,10 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   InkWell(
                     onTap: (){
+                      Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: ((context) => const ExplorePage())));
                     },
                     child: Stack(
                       children: [
