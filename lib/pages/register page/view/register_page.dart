@@ -35,7 +35,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 50,
               ),
               Image.asset(
-                'lib/images/logo.gif',
+                'lib/images/logo.png',
                 height: 200,
                 width: 250,
               ),
@@ -44,9 +44,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       const EdgeInsets.only(left: 20, right: 40, bottom: 20),
                   child: Observer(builder: (_) {
                     return TextField(
+                      style: const TextStyle(color: MyColors.primaryyellow),
                       onChanged: _controller.changeName,
                       decoration: InputDecoration(
                           labelText: ' Nome',
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: MyColors.primaryyellow, width: 2),
+                          ),
                           enabledBorder: const UnderlineInputBorder(
                             borderSide: BorderSide(
                                 color: MyColors.primarywhite, width: 2),
@@ -58,20 +63,27 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 25,
               ),
               Container(
-                  margin:
-                      const EdgeInsets.only(left: 20, right: 40, bottom: 20),
-                  child: Observer(builder: (_) {
+                margin: const EdgeInsets.only(left: 20, right: 40, bottom: 20),
+                child: Observer(
+                  builder: (_) {
                     return TextField(
+                      style: const TextStyle(color: MyColors.primaryyellow),
                       onChanged: _controller.changeEmail,
                       decoration: InputDecoration(
                           labelText: 'Email',
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: MyColors.primaryyellow, width: 2),
+                          ),
                           enabledBorder: const UnderlineInputBorder(
                             borderSide: BorderSide(
                                 color: MyColors.primarywhite, width: 2),
                           ),
                           labelStyle: Theme.of(context).textTheme.headline2),
                     );
-                  })),
+                  },
+                ),
+              ),
               const SizedBox(
                 height: 25,
               ),
@@ -80,16 +92,26 @@ class _RegisterPageState extends State<RegisterPage> {
                       const EdgeInsets.only(left: 20, right: 40, bottom: 20),
                   child: Observer(builder: (_) {
                     return TextField(
-                      style: const  TextStyle(color: MyColors.primaryyellow),
+                      style: const TextStyle(color: MyColors.primaryyellow),
                       obscureText: !_controller.isPasswordVisible,
                       onChanged: _controller.changePassword,
                       decoration: InputDecoration(
                           suffixIcon: IconButton(
                               icon: _controller.isPasswordVisible
-                                  ? const Icon(Icons.visibility)
-                                  : const  Icon(Icons.visibility_off),
+                                  ? const Icon(
+                                      Icons.visibility,
+                                      color: MyColors.primarywhite,
+                                    )
+                                  : const Icon(
+                                      Icons.visibility_off,
+                                      color: MyColors.primarywhite,
+                                    ),
                               onPressed: _controller.setPasswordVisibility),
                           labelText: 'Senha',
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: MyColors.primaryyellow, width: 2),
+                          ),
                           enabledBorder: const UnderlineInputBorder(
                             borderSide: BorderSide(
                                 color: MyColors.primarywhite, width: 2),
@@ -105,14 +127,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       const EdgeInsets.only(left: 20, right: 40, bottom: 20),
                   child: Observer(builder: (_) {
                     return TextField(
-                      style: const  TextStyle(color: MyColors.primaryyellow),
+                      style: const TextStyle(color: MyColors.primaryyellow),
                       obscureText: !_controller.isPasswordConfirmationVisible,
                       onChanged: _controller.changePasswordConfirmation,
                       decoration: InputDecoration(
                           suffixIcon: IconButton(
                               icon: _controller.isPasswordConfirmationVisible
-                                  ? const Icon(Icons.visibility)
-                                  : const Icon(Icons.visibility_off),
+                                  ? const Icon(Icons.visibility,color: MyColors.primarywhite,)
+                                  : const Icon(Icons.visibility_off,color: MyColors.primarywhite,),
                               onPressed: _controller
                                   .setPasswordConfirmationVisibility),
                           labelText: 'Confirmar senha',
@@ -123,7 +145,6 @@ class _RegisterPageState extends State<RegisterPage> {
                           labelStyle: Theme.of(context).textTheme.headline2),
                     );
                   })),
-
               SizedBox(
                 width: 260,
                 height: 50,
@@ -143,23 +164,23 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ),
                       );
-                    } else if(!_controller.isPasswordValid) {
-                        dialogBox(
-                          context,
-                          "ERRO:",
-                          "Senha não confere!",
-                          "OK",
-                          () => Navigator.pop(context),
-                        );
-                      } else if(!_controller.isEmailValid) {
-                        dialogBox(
-                          context,
-                          "ERRO:",
-                          "E-mail não confere!",
-                          "OK",
-                          () => Navigator.pop(context),
-                        );
-                      } else {
+                    } else if (!_controller.isPasswordValid) {
+                      dialogBox(
+                        context,
+                        "ERRO:",
+                        "Senha não confere!",
+                        "OK",
+                        () => Navigator.pop(context),
+                      );
+                    } else if (!_controller.isEmailValid) {
+                      dialogBox(
+                        context,
+                        "ERRO:",
+                        "E-mail não confere!",
+                        "OK",
+                        () => Navigator.pop(context),
+                      );
+                    } else {
                       dialogBox(
                         context,
                         "ERRO:",
@@ -180,7 +201,6 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ),
               ),
-              
             ],
           ),
         ),

@@ -30,9 +30,9 @@ class CustomAppbar extends StatelessWidget with PreferredSizeWidget {
             children: [
               const SizedBox(height: 10),
               Image.asset(
-                'lib/images/logo.gif',
-                height: 280,
-                width: 300,
+                'lib/images/logo.png',
+                height: 130,
+                width: 150,
               ),
             ],
           ),
