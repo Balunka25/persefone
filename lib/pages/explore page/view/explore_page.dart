@@ -1,9 +1,12 @@
+import 'dart:ui';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:favorite_button/favorite_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:lottie/lottie.dart';
 import 'package:mobx_widget/mobx_widget.dart';
 import 'package:persefone/core/widgets/stylish_drawer.dart';
 import 'package:persefone/design/my_colors.dart';
@@ -86,12 +89,16 @@ class _ExplorePageState extends State<ExplorePage> {
                           var post = data[index];
                           return Stack(
                             children: [
-                              Container(
-                                width: 400,
-                                decoration: const BoxDecoration(
-                                  color: MyColors.primaryyellow,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(10),
+                              BackdropFilter(
+                                filter:
+                                    ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color:
+                                        MyColors.primarygreen.withOpacity(0.5),
+                                    borderRadius: const BorderRadius.all(
+                                      Radius.circular(10),
+                                    ),
                                   ),
                                 ),
                               ),
@@ -127,9 +134,16 @@ class _ExplorePageState extends State<ExplorePage> {
                                   progressIndicatorBuilder:
                                       (context, url, downloadProgress) =>
                                           Center(
-                                    child: CircularProgressIndicator(
-                                        value: downloadProgress.progress),
-                                  ),
+                                              child: Container(
+                                    width: 180,
+                                    height: 180,
+                                    decoration: const BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage(
+                                            "lib/images/loading_leaves.gif"),
+                                      ),
+                                    ),
+                                  )),
                                   errorWidget: (context, url, error) =>
                                       const Icon(Icons.error),
                                 ),
@@ -139,6 +153,7 @@ class _ExplorePageState extends State<ExplorePage> {
                                     MaterialPageRoute(
                                       builder: ((context) => ImageDetailsPage(
                                             imageUrl: post.url,
+                                            ownerId: post.owner_id
                                           )),
                                     ),
                                   );

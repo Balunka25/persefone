@@ -13,6 +13,12 @@ abstract class _RegisterControllerBase with Store {
   UserModel user = UserModel();
 
   @observable
+  String phone = '';
+
+  @action
+  void changePhone(String newValue) => phone = newValue;
+
+  @observable
   String email = '';
 
   @action
@@ -83,6 +89,7 @@ abstract class _RegisterControllerBase with Store {
         "email": email,
         "name": name,
         "password": password,
+        "phone": phone,
       },
     ); 
     return userCredential;

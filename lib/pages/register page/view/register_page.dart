@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:persefone/design/my_colors.dart';
 import 'package:persefone/pages/explore%20page/view/explore_page.dart';
-import 'package:persefone/pages/login%20page/view/login_page.dart';
 import 'package:persefone/pages/register%20page/controller/register_controller.dart';
 import 'package:persefone/core/widgets/dialog_box.dart';
 
@@ -15,7 +14,6 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   final _controller = RegisterController();
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,18 +33,18 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               Image.asset(
                 'lib/images/logo.png',
-                height: 200,
-                width: 250,
+                height: 100,
+                width: 150,
               ),
               Container(
                   margin:
-                      const EdgeInsets.only(left: 20, right: 40, bottom: 20),
+                      const EdgeInsets.only(left: 40, right: 40, bottom: 10),
                   child: Observer(builder: (_) {
                     return TextField(
                       style: const TextStyle(color: MyColors.primaryyellow),
                       onChanged: _controller.changeName,
                       decoration: InputDecoration(
-                          labelText: ' Nome',
+                          labelText: 'Nome',
                           focusedBorder: const UnderlineInputBorder(
                             borderSide: BorderSide(
                                 color: MyColors.primaryyellow, width: 2),
@@ -55,14 +53,40 @@ class _RegisterPageState extends State<RegisterPage> {
                             borderSide: BorderSide(
                                 color: MyColors.primarywhite, width: 2),
                           ),
-                          labelStyle: Theme.of(context).textTheme.headline2),
+                          labelStyle: Theme.of(context).textTheme.headline3),
                     );
                   })),
               const SizedBox(
                 height: 25,
               ),
               Container(
-                margin: const EdgeInsets.only(left: 20, right: 40, bottom: 20),
+                margin: const EdgeInsets.only(left: 40, right: 40, bottom: 10),
+                child: Observer(
+                  builder: (_) {
+                    return TextField(
+                      keyboardType: TextInputType.number,
+                      style: const TextStyle(color: MyColors.primaryyellow),
+                      onChanged: _controller.changePhone,
+                      decoration: InputDecoration(
+                          labelText: 'Telefone',
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: MyColors.primaryyellow, width: 2),
+                          ),
+                          enabledBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                                color: MyColors.primarywhite, width: 2),
+                          ),
+                          labelStyle: Theme.of(context).textTheme.headline3),
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: 25,
+              ),
+              Container(
+                margin: const EdgeInsets.only(left: 40, right: 40, bottom: 10),
                 child: Observer(
                   builder: (_) {
                     return TextField(
@@ -78,7 +102,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             borderSide: BorderSide(
                                 color: MyColors.primarywhite, width: 2),
                           ),
-                          labelStyle: Theme.of(context).textTheme.headline2),
+                          labelStyle: Theme.of(context).textTheme.headline3),
                     );
                   },
                 ),
@@ -88,7 +112,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               Container(
                   margin:
-                      const EdgeInsets.only(left: 20, right: 40, bottom: 20),
+                      const EdgeInsets.only(left: 40, right: 40, bottom: 10),
                   child: Observer(builder: (_) {
                     return TextField(
                       style: const TextStyle(color: MyColors.primaryyellow),
@@ -115,7 +139,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             borderSide: BorderSide(
                                 color: MyColors.primarywhite, width: 2),
                           ),
-                          labelStyle: Theme.of(context).textTheme.headline2),
+                          labelStyle: Theme.of(context).textTheme.headline3),
                     );
                   })),
               const SizedBox(
@@ -123,7 +147,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               Container(
                   margin:
-                      const EdgeInsets.only(left: 20, right: 40, bottom: 20),
+                      const EdgeInsets.only(left: 40, right: 40, bottom: 10),
                   child: Observer(builder: (_) {
                     return TextField(
                       style: const TextStyle(color: MyColors.primaryyellow),
@@ -132,8 +156,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       decoration: InputDecoration(
                           suffixIcon: IconButton(
                               icon: _controller.isPasswordConfirmationVisible
-                                  ? const Icon(Icons.visibility,color: MyColors.primarywhite,)
-                                  : const Icon(Icons.visibility_off,color: MyColors.primarywhite,),
+                                  ? const Icon(
+                                      Icons.visibility,
+                                      color: MyColors.primarywhite,
+                                    )
+                                  : const Icon(
+                                      Icons.visibility_off,
+                                      color: MyColors.primarywhite,
+                                    ),
                               onPressed: _controller
                                   .setPasswordConfirmationVisibility),
                           labelText: 'Confirmar senha',
@@ -143,11 +173,12 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                           enabledBorder: const UnderlineInputBorder(
                             borderSide: BorderSide(
-                                color: MyColors.primarywhite, width: 2),),
-                          labelStyle: Theme.of(context).textTheme.headline2),
+                                color: MyColors.primarywhite, width: 2),
+                          ),
+                          labelStyle: Theme.of(context).textTheme.headline3),
                     );
-                    
                   })),
+              const SizedBox(height: 20),
               SizedBox(
                 width: 260,
                 height: 50,
