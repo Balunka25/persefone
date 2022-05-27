@@ -47,8 +47,8 @@ class _StylishDrawerState extends State<StylishDrawer> {
                     child: Stack(
                       children: [
                         Container(
-                          width: 180,
-                          height: 180,
+                          width: 220,
+                          height: 220,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage(
