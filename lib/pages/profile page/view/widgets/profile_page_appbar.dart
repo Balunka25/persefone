@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:persefone/pages/explore%20page/view/explore_page.dart';
-import 'package:persefone/pages/home%20page/view/home_page.dart';
 
 class ProfilePageAppBar extends StatelessWidget {
   const ProfilePageAppBar({Key? key}) : super(key: key);
