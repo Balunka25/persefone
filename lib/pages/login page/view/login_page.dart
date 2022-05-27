@@ -4,7 +4,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:persefone/core/widgets/dialog_box.dart';
 import 'package:persefone/design/my_colors.dart';
 import 'package:persefone/pages/explore%20page/view/explore_page.dart';
-import 'package:persefone/pages/home%20page/view/home_page.dart';
 import 'package:persefone/pages/login%20page/controller/login_controller.dart';
 
 import '../../register page/view/register_page.dart';
