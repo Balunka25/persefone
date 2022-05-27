@@ -121,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: Theme.of(context)
                             .textTheme
                             .headline4!
-                            .copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+                            .copyWith(fontWeight: FontWeight.bold, fontSize: 12),
                       ),
                     ),
                   ],
