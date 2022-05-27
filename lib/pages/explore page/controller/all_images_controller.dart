@@ -20,6 +20,8 @@ abstract class _AllImagesControllerBase with Store {
 
     await FirebaseFirestore.instance
         .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection('favorites')
         .doc(image.id)
         .set(imageMap);
   }
