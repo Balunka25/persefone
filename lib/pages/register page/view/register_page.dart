@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-
 import 'package:persefone/design/my_colors.dart';
-import 'package:persefone/pages/home%20page/view/home_page.dart';
+import 'package:persefone/pages/explore%20page/view/explore_page.dart';
 import 'package:persefone/pages/login%20page/view/login_page.dart';
 import 'package:persefone/pages/register%20page/controller/register_controller.dart';
 import 'package:persefone/core/widgets/dialog_box.dart';
@@ -164,7 +163,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         () => Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const HomePage(),
+                            builder: (context) => const ExplorePage(),
                           ),
                         ),
                       );

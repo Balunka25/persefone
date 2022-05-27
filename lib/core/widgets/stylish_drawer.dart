@@ -1,10 +1,8 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-
 import 'package:persefone/design/my_colors.dart';
 import 'package:persefone/pages/changepass%20page/view/changepass_page.dart';
 import 'package:persefone/pages/favorite%20page/view/favorite_page.dart';
-import 'package:persefone/pages/home%20page/view/home_page.dart';
 import 'package:persefone/pages/login%20page/view/login_page.dart';
 import 'package:persefone/pages/profile%20page/view/profile_page.dart';
 
