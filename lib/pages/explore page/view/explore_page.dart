@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:favorite_button/favorite_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -101,6 +102,19 @@ class _ExplorePageState extends State<ExplorePage> {
                                   ),
                                 ),
                               ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  FavoriteButton(
+                                    iconColor:
+                                        MyColors.primarygreen.withOpacity(0.5),
+                                    isFavorite: false,
+                                    valueChanged: (_isFavorite) async {
+                                      await controller.addToFavorite(post);
+                                    },
+                                  ),
+                                ],
+                              ),
                               GestureDetector(
                                 child: CachedNetworkImage(
                                   imageUrl: post.url,
@@ -155,7 +169,7 @@ class _ExplorePageState extends State<ExplorePage> {
                         const Text('Ocorreu um erro ao pesquisar os posts'),
                     onPending: (_) => const Center(
                       child: CircularProgressIndicator(
-                        color: Colors.blue,
+                        color: MyColors.primarygreen,
                       ),
                     ),
                     onUnstarted: (_) => const Text(''),

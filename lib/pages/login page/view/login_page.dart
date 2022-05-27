@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 50,
               ),
               Image.asset(
-                'lib/images/logo.png',
+                'lib/images/logo2.png',
                 height: 200,
                 width: 250,
               ),
@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                         style: Theme.of(context)
                             .textTheme
                             .headline4!
-                            .copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+                            .copyWith(fontWeight: FontWeight.bold, fontSize: 12),
                       ),
                     ),
                   ],

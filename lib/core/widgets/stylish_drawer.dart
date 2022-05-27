@@ -27,16 +27,22 @@ class _StylishDrawerState extends State<StylishDrawer> {
               filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
               child: Container(
                 decoration: BoxDecoration(
-                  // image: DecorationImage(image: AssetImage("")),
-                    color: MyColors.primarygreen
-                        .withOpacity(0.5)),
+                    image: DecorationImage(
+                        image: AssetImage("lib/images/leaves1.gif"),
+                        fit: BoxFit.cover),
+                    color: MyColors.primarygreen.withOpacity(0.5)),
               ),
             ),
-            const SizedBox(height: 40,),
+            const SizedBox(
+              height: 60,
+            ),
             Container(
               margin: const EdgeInsets.only(top: 20),
               child: ListView(
                 children: <Widget>[
+                  const SizedBox(
+                    height: 12,
+                  ),
                   InkWell(
                     onTap: () {
                       Navigator.push(
@@ -53,6 +59,7 @@ class _StylishDrawerState extends State<StylishDrawer> {
                             image: DecorationImage(
                               image: AssetImage(
                                   "lib/images/logo_profile_page.png"),
+                             
                             ),
                           ),
                         ),
@@ -139,11 +146,11 @@ class _StylishDrawerState extends State<StylishDrawer> {
                   ),
                   const SizedBox(height: 40),
                   ListTile(
-                    leading: const Icon(
-                      Icons.logout,
-                      color: MyColors.primarydark,
-                      size: 15,
-                    ),
+                    // leading: const Icon(
+                    //   Icons.logout,
+                    //   color: MyColors.primarydark,
+                    //   size: 15,
+                    // ),
                     title: const Text("Sair",
                         style: TextStyle(
                             color: MyColors.primarydark, fontSize: 10)),
@@ -167,11 +174,19 @@ class _StylishDrawerState extends State<StylishDrawer> {
 class DrawerStyle extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-     Path path0 = Path();
-    path0.moveTo(size.width*0.0050000,size.height*0.9925690);
-    path0.quadraticBezierTo(size.width*0.6735167,size.height*0.8018843,size.width*0.6109833,size.height*0.4071789);
-    path0.cubicTo(size.width*0.6268667,size.height*0.3555600,size.width*0.4626833,size.height*0.1088509,size.width*0.4132500,size.height*0.0094082);
-    path0.quadraticBezierTo(size.width*0.2423833,size.height*0.1355892,size.width*0.0050000,size.height*0.1963907);
+    Path path0 = Path();
+    path0.moveTo(size.width * 0.0050000, size.height * 0.9925690);
+    path0.quadraticBezierTo(size.width * 0.6735167, size.height * 0.8018843,
+        size.width * 0.6109833, size.height * 0.4071789);
+    path0.cubicTo(
+        size.width * 0.6268667,
+        size.height * 0.3555600,
+        size.width * 0.4626833,
+        size.height * 0.1088509,
+        size.width * 0.4132500,
+        size.height * 0.0094082);
+    path0.quadraticBezierTo(size.width * 0.2423833, size.height * 0.1355892,
+        size.width * 0.0050000, size.height * 0.1963907);
     return path0;
   }
 

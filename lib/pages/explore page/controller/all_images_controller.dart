@@ -10,6 +10,22 @@ class AllImagesController = _AllImagesControllerBase with _$AllImagesController;
 abstract class _AllImagesControllerBase with Store {
   var imageRepository = ImageRepository();
 
+  @action
+  Future<void> addToFavorite(ImageModel image) async {
+    final imageMap = {
+      'id': image.id,
+      'owner_id': image.owner_id,
+      'url': image.url
+    };
+
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection('favorites')
+        .doc(image.id)
+        .set(imageMap);
+  }
+
   @observable
   ObservableFuture<List<ImageModel>>? allImages;
 
@@ -26,7 +42,7 @@ abstract class _AllImagesControllerBase with Store {
   int totalImagesUser = 0;
 
   @action
-  Future<void> getUserImagesCount() async{
+  Future<void> getUserImagesCount() async {
     var currentUser = FirebaseAuth.instance.currentUser;
     QuerySnapshot _userImages = await FirebaseFirestore.instance
         .collection("users")
@@ -41,7 +57,7 @@ abstract class _AllImagesControllerBase with Store {
   int totalImages = 0;
 
   @action
-  Future<void> getTotalImagesCount() async{
+  Future<void> getTotalImagesCount() async {
     QuerySnapshot _totalImages =
         await FirebaseFirestore.instance.collection("images").get();
     List<DocumentSnapshot> _totalImagesCount = _totalImages.docs;
@@ -52,7 +68,7 @@ abstract class _AllImagesControllerBase with Store {
   int imagesCount = 0;
 
   @action
-  getImagesCount(){
+  getImagesCount() {
     imagesCount = totalImages - totalImagesUser;
   }
 }
