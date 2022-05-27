@@ -26,18 +26,12 @@ class CustomAppbar extends StatelessWidget with PreferredSizeWidget {
         backgroundColor: MyColors.primarygreen,
         elevation: 0,
         centerTitle: true,
-        // actions: [
-        //   Builder(builder: (context) {
-        //     return IconButton(
-        //         onPressed: () => Scaffold.of(context).openEndDrawer(),
-        //         icon: const Icon(Icons.menu));
-        //   })
-        // ],
+       
         title: Column(
           children: [
             const SizedBox(height: 10),
             Image.asset(
-              'lib/images/logo.png',
+              'lib/images/logo2.png',
               height: 130,
               width: 150,
             ),

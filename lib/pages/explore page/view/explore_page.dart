@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:favorite_button/favorite_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -86,6 +87,7 @@ class _ExplorePageState extends State<ExplorePage> {
                           return Stack(
                             children: [
                               Container(
+                          
                                 width: 400,
                                 decoration: const BoxDecoration(
                                   color: MyColors.primaryyellow,
@@ -94,7 +96,10 @@ class _ExplorePageState extends State<ExplorePage> {
                                   ),
                                 ),
                               ),
+                              
+
                               GestureDetector(
+                                
                                 child: CachedNetworkImage(
                                   imageUrl: post.url,
                                   imageBuilder: (context, imageProvider) =>
