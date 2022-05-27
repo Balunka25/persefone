@@ -73,6 +73,14 @@ mixin _$AllImagesController on _AllImagesControllerBase, Store {
     });
   }
 
+  late final _$addToFavoriteAsyncAction =
+      AsyncAction('_AllImagesControllerBase.addToFavorite', context: context);
+
+  @override
+  Future<void> addToFavorite(ImageModel image) {
+    return _$addToFavoriteAsyncAction.run(() => super.addToFavorite(image));
+  }
+
   late final _$getUserImagesCountAsyncAction = AsyncAction(
       '_AllImagesControllerBase.getUserImagesCount',
       context: context);

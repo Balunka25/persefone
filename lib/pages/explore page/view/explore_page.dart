@@ -55,9 +55,9 @@ class _ExplorePageState extends State<ExplorePage> {
                   height: 700,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage("lib/images/planta_longa_background.png"),
-                      fit: BoxFit.cover
-                    ),
+                        image: AssetImage(
+                            "lib/images/planta_longa_background.png"),
+                        fit: BoxFit.cover),
                   ),
                 ),
               ),
@@ -87,7 +87,6 @@ class _ExplorePageState extends State<ExplorePage> {
                           return Stack(
                             children: [
                               Container(
-                          
                                 width: 400,
                                 decoration: const BoxDecoration(
                                   color: MyColors.primaryyellow,
@@ -96,10 +95,20 @@ class _ExplorePageState extends State<ExplorePage> {
                                   ),
                                 ),
                               ),
-                              
-
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  FavoriteButton(
+                                    iconColor:
+                                        MyColors.primarygreen.withOpacity(0.5),
+                                    isFavorite: false,
+                                    valueChanged: (_isFavorite) async {
+                                      await controller.addToFavorite(post);
+                                    },
+                                  ),
+                                ],
+                              ),
                               GestureDetector(
-                                
                                 child: CachedNetworkImage(
                                   imageUrl: post.url,
                                   imageBuilder: (context, imageProvider) =>
