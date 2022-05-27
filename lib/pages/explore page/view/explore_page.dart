@@ -154,7 +154,7 @@ class _ExplorePageState extends State<ExplorePage> {
                         const Text('Ocorreu um erro ao pesquisar os posts'),
                     onPending: (_) => const Center(
                       child: CircularProgressIndicator(
-                        color: Colors.blue,
+                        color: MyColors.primarygreen,
                       ),
                     ),
                     onUnstarted: (_) => const Text(''),
