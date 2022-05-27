@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:persefone/design/my_colors.dart';
 import 'package:persefone/pages/changepass%20page/view/changepass_page.dart';
+import 'package:persefone/pages/favorite%20page/view/favorite_page.dart';
 import 'package:persefone/pages/home%20page/view/home_page.dart';
 import 'package:persefone/pages/login%20page/view/login_page.dart';
 import 'package:persefone/pages/profile%20page/view/profile_page.dart';
@@ -28,7 +29,7 @@ class _StylishDrawerState extends State<StylishDrawer> {
               filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
               child: Container(
                 decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage("")),
+                  // image: DecorationImage(image: AssetImage("")),
                     color: const Color.fromARGB(255, 255, 247, 255)
                         .withOpacity(0.5)),
               ),
@@ -70,18 +71,18 @@ class _StylishDrawerState extends State<StylishDrawer> {
                       ],
                     ),
                   ),
-                  const Spacer(),
+                  // const Spacer(),
                   InkWell(
                     onTap: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: ((context) => const HomePage())));
+                              builder: ((context) => const FavoritePage())));
                     },
                     child: Stack(
                       children: [
                         Container(
-                           padding: const EdgeInsets.only(right:64),
+                          //  padding: const EdgeInsets.only(right:64),
                           width: 180,
                           height: 180,
                           decoration: const BoxDecoration(
@@ -105,7 +106,7 @@ class _StylishDrawerState extends State<StylishDrawer> {
                       ],
                     ),
                   ),
-                  const Spacer(),
+                  // const Spacer(),
                   InkWell(
                     onTap: () {
                       Navigator.push(
@@ -169,10 +170,10 @@ class DrawerStyle extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
 
-    Paint paint0 = Paint()
-      ..color = const Color.fromARGB(255, 1, 178, 37)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 6.72;
+    // Paint paint0 = Paint()
+    //   ..color = const Color.fromARGB(255, 1, 178, 37)
+    //   ..style = PaintingStyle.stroke
+    //   ..strokeWidth = 6.72;
 
      Path path0 = Path();
     path0.moveTo(size.width*0.0050000,size.height*0.9925690);
