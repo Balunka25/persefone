@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx_widget/mobx_widget.dart';
 import 'package:persefone/core/widgets/stylish_drawer.dart';
+import 'package:persefone/design/my_colors.dart';
 
 import '../../home page/view/widgets/custom_appbar.dart';
 import '../../profile page/models/image_model.dart';
@@ -40,7 +41,7 @@ class _ExplorePageState extends State<ExplorePage> {
             image: AssetImage("lib/images/backgroud.png"), fit: BoxFit.cover),
       ),
       child: Scaffold(
-         drawer: const StylishDrawer(),
+        drawer: const StylishDrawer(),
         backgroundColor: Colors.transparent,
         appBar: CustomAppbar(),
         body: Observer(builder: (context) {
@@ -61,34 +62,48 @@ class _ExplorePageState extends State<ExplorePage> {
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      crossAxisSpacing: 30,
+                      crossAxisSpacing: 20,
                       mainAxisSpacing: 15,
                     ),
                     itemCount: controller.imagesCount,
                     itemBuilder: (context, index) {
                       var post = data[index];
-                      return CachedNetworkImage(
-                        imageUrl: post.url,
-                        imageBuilder: (context, imageProvider) => Container(
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              image: imageProvider,
-                              fit: BoxFit.cover,
-                            ),
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(10),
+                      return Stack(
+                        children: [
+                          Container(
+                            height: 400,
+                            width: 400,
+                            decoration: const BoxDecoration(
+                              color: MyColors.primarywhite,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
                             ),
                           ),
-                        ),
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        height: MediaQuery.of(context).size.width * 0.9,
-                        progressIndicatorBuilder:
-                            (context, url, downloadProgress) => Center(
-                          child: CircularProgressIndicator(
-                              value: downloadProgress.progress),
-                        ),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
+                          CachedNetworkImage(
+                            imageUrl: post.url,
+                            imageBuilder: (context, imageProvider) => Container(
+                              width: 100,
+                              height: 200,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: imageProvider, fit: BoxFit.fitWidth),
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                            ),
+                            width: 100,
+                            height: 200,
+                            progressIndicatorBuilder:
+                                (context, url, downloadProgress) => Center(
+                              child: CircularProgressIndicator(
+                                  value: downloadProgress.progress),
+                            ),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                          ),
+                        ],
                       );
                     },
                   );
