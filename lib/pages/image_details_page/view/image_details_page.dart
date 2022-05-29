@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../../design/my_colors.dart';
@@ -23,6 +24,10 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
   void initState() {
     super.initState();
     getPhoneNumber();
+  }
+
+  _shareContent() async {
+    Share.share(widget.imageUrl!);
   }
 
   String? phoneNumber;
@@ -75,7 +80,7 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
                 //       "https://api.whatsapp.com/send?phone=+55$intValue&text=Ol%C3%A1!%20Vi%20seu%20perfil%20no%20D%C3%A1%20um%20Help!%20e%20gostaria%20de%20uma%20monitoria,%20poderia%20me%20ajudar?";
                 //   await launchURL(url);
                 // },
-                onPressed: () async{
+                onPressed: () async {
                   openWhatsapp();
                 },
                 child: Text("Contatar",
@@ -87,7 +92,10 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
                   backgroundColor:
                       MaterialStateProperty.all<Color>(MyColors.primaryyellow),
                 ),
-              )
+              ),
+              IconButton(
+                  onPressed: (() async => {await _shareContent()}),
+                  icon: const Icon(Icons.share, color: MyColors.primarydark)),
             ],
           )),
     );
@@ -103,13 +111,15 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
     });
   }
 
-  openWhatsapp() async{
-    var whatsappURl = "whatsapp://send?phone=+55$phoneNumber&text=hello";
-      if( await canLaunchUrlString(whatsappURl)){
-        await launchUrlString(whatsappURl);
-      }else{
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("Whatsapp not installed")));
-      }
+  openWhatsapp() async {
+    var texto = "Olá! Tenho interesse em sua plantinha!";
+    var whatsappURl =
+        "https://api.whatsapp.com/send?phone=+55$phoneNumber&text=$texto";
+    try {
+      await launchUrlString(whatsappURl, mode: LaunchMode.externalApplication);
+    } catch (error) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Whatsapp not installed")));
     }
   }
+}

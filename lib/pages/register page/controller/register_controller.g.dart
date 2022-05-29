@@ -62,6 +62,22 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
     });
   }
 
+  late final _$phoneAtom =
+      Atom(name: '_RegisterControllerBase.phone', context: context);
+
+  @override
+  String get phone {
+    _$phoneAtom.reportRead();
+    return super.phone;
+  }
+
+  @override
+  set phone(String value) {
+    _$phoneAtom.reportWrite(value, super.phone, () {
+      super.phone = value;
+    });
+  }
+
   late final _$emailAtom =
       Atom(name: '_RegisterControllerBase.email', context: context);
 
@@ -190,6 +206,17 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
       ActionController(name: '_RegisterControllerBase', context: context);
 
   @override
+  void changePhone(String newValue) {
+    final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
+        name: '_RegisterControllerBase.changePhone');
+    try {
+      return super.changePhone(newValue);
+    } finally {
+      _$_RegisterControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void changeEmail(String newValue) {
     final _$actionInfo = _$_RegisterControllerBaseActionController.startAction(
         name: '_RegisterControllerBase.changeEmail');
@@ -270,6 +297,7 @@ mixin _$RegisterController on _RegisterControllerBase, Store {
   String toString() {
     return '''
 user: ${user},
+phone: ${phone},
 email: ${email},
 name: ${name},
 password: ${password},

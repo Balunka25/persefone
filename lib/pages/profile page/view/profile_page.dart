@@ -11,7 +11,7 @@ import 'package:persefone/pages/profile%20page/controller/user_image_controller.
 import 'package:persefone/pages/profile%20page/view/widgets/profile_page_appbar.dart';
 import '../../../design/my_colors.dart';
 import '../../upload image/view/upload_image_page.dart';
-import '../models/image_model.dart';
+import '../../../core/models/image_model.dart';
 
 class ProfilePage extends StatefulWidget with PreferredSizeWidget {
   const ProfilePage({Key? key}) : super(key: key);
