@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobx/mobx.dart';
 import '../../profile page/get_image/image_repository.dart';
-import '../../profile page/models/image_model.dart';
+import '../../../core/models/image_model.dart';
 part 'all_images_controller.g.dart';
 
 class AllImagesController = _AllImagesControllerBase with _$AllImagesController;
@@ -11,31 +11,71 @@ abstract class _AllImagesControllerBase with Store {
   var imageRepository = ImageRepository();
 
   @action
-  Future<void> addToFavorite(ImageModel image) async {
+  Future<void> manageFavorite(ImageModelExplorer image) async {
     final imageMap = {
       'id': image.id,
       'owner_id': image.owner_id,
       'url': image.url
     };
 
-    await FirebaseFirestore.instance
-        .collection('users')
-        .doc(FirebaseAuth.instance.currentUser!.uid)
-        .collection('favorites')
-        .doc(image.id)
-        .set(imageMap);
+    if(image.isFavorite == true) {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection('favorites')
+          .doc(image.id)
+          .delete();
+    } else {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(FirebaseAuth.instance.currentUser!.uid)
+          .collection('favorites')
+          .doc(image.id)
+          .set(imageMap);
+    }
   }
 
   @observable
   ObservableFuture<List<ImageModel>>? allImages;
+
+  @observable
+  ObservableFuture<List<ImageModelExplorer>>? allImagesExplorer;
 
   @action
   getAllImages() {
     allImages = ObservableFuture(imageRepository.getAllImages());
   }
 
+  @action
+  Future<List<ImageModelExplorer>> getFavorite() async {
+    List<ImageModelExplorer> imagesExplorer = [];
+
+    final images = await imageRepository.getAllImages();
+    final userFavorites = await imageRepository.getUserFavorites();
+    
+    for(var image in images) {
+      bool imageFavorite = false;
+
+      for(var favorite in userFavorites) {
+
+        if(image.id == favorite.id) {
+          imageFavorite = true;
+        }
+
+      }
+
+      ImageModelExplorer newImage = ImageModelExplorer(image.id, image.owner_id, image.url, imageFavorite);
+      imagesExplorer.add(newImage);
+
+    }
+
+    return imagesExplorer;
+  }
+
   void getPostsFromMobxWidget() {
-    allImages = ObservableFuture(imageRepository.getAllImages());
+
+    allImagesExplorer = ObservableFuture(getFavorite());
+
   }
 
   @observable

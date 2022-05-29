@@ -13,7 +13,7 @@ import 'package:persefone/design/my_colors.dart';
 import 'package:persefone/pages/image_details_page/view/image_details_page.dart';
 
 import '../../../core/widgets/custom_appbar.dart';
-import '../../profile page/models/image_model.dart';
+import '../../../core/models/image_model.dart';
 import '../controller/all_images_controller.dart';
 
 class ExplorePage extends StatefulWidget {
@@ -66,10 +66,10 @@ class _ExplorePageState extends State<ExplorePage> {
               ),
               Padding(
                   padding: const EdgeInsets.all(32),
-                  child: ObserverFuture<List<ImageModel>, Exception>(
+                  child: ObserverFuture<List<ImageModelExplorer>, Exception>(
                     autoInitialize: true,
                     fetchData: controller.getPostsFromMobxWidget,
-                    observableFuture: () => controller.allImages,
+                    observableFuture: () => controller.allImagesExplorer,
                     onData: (_, data) {
                       if (data.length == 0) {
                         return const Center(
@@ -108,9 +108,9 @@ class _ExplorePageState extends State<ExplorePage> {
                                   FavoriteButton(
                                     iconColor:
                                         MyColors.primarygreen.withOpacity(0.5),
-                                    isFavorite: false,
+                                    isFavorite: post.isFavorite,
                                     valueChanged: (_isFavorite) async {
-                                      await controller.addToFavorite(post);
+                                      await controller.manageFavorite(post);
                                     },
                                   ),
                                 ],

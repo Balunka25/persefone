@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobx/mobx.dart';
 import '../get_image/image_repository.dart';
-import '../models/image_model.dart';
+import '../../../core/models/image_model.dart';
 part 'user_image_controller.g.dart';
 
 class UserImageController = _UserImageControllerBase with _$UserImageController;

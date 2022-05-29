@@ -25,6 +25,22 @@ mixin _$AllImagesController on _AllImagesControllerBase, Store {
     });
   }
 
+  late final _$allImagesExplorerAtom = Atom(
+      name: '_AllImagesControllerBase.allImagesExplorer', context: context);
+
+  @override
+  ObservableFuture<List<ImageModelExplorer>>? get allImagesExplorer {
+    _$allImagesExplorerAtom.reportRead();
+    return super.allImagesExplorer;
+  }
+
+  @override
+  set allImagesExplorer(ObservableFuture<List<ImageModelExplorer>>? value) {
+    _$allImagesExplorerAtom.reportWrite(value, super.allImagesExplorer, () {
+      super.allImagesExplorer = value;
+    });
+  }
+
   late final _$totalImagesUserAtom =
       Atom(name: '_AllImagesControllerBase.totalImagesUser', context: context);
 
@@ -73,12 +89,20 @@ mixin _$AllImagesController on _AllImagesControllerBase, Store {
     });
   }
 
-  late final _$addToFavoriteAsyncAction =
-      AsyncAction('_AllImagesControllerBase.addToFavorite', context: context);
+  late final _$manageFavoriteAsyncAction =
+      AsyncAction('_AllImagesControllerBase.manageFavorite', context: context);
 
   @override
-  Future<void> addToFavorite(ImageModel image) {
-    return _$addToFavoriteAsyncAction.run(() => super.addToFavorite(image));
+  Future<void> manageFavorite(ImageModelExplorer image) {
+    return _$manageFavoriteAsyncAction.run(() => super.manageFavorite(image));
+  }
+
+  late final _$getFavoriteAsyncAction =
+      AsyncAction('_AllImagesControllerBase.getFavorite', context: context);
+
+  @override
+  Future<List<ImageModelExplorer>> getFavorite() {
+    return _$getFavoriteAsyncAction.run(() => super.getFavorite());
   }
 
   late final _$getUserImagesCountAsyncAction = AsyncAction(
@@ -130,6 +154,7 @@ mixin _$AllImagesController on _AllImagesControllerBase, Store {
   String toString() {
     return '''
 allImages: ${allImages},
+allImagesExplorer: ${allImagesExplorer},
 totalImagesUser: ${totalImagesUser},
 totalImages: ${totalImages},
 imagesCount: ${imagesCount}

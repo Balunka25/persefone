@@ -8,7 +8,7 @@ import 'package:persefone/core/widgets/stylish_drawer.dart';
 import 'package:persefone/design/my_colors.dart';
 import 'package:persefone/pages/favorite%20page/controller/favorite_controller.dart';
 import 'package:persefone/core/widgets/custom_appbar.dart';
-import 'package:persefone/pages/profile%20page/models/image_model.dart';
+import 'package:persefone/core/models/image_model.dart';
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({Key? key}) : super(key: key);
