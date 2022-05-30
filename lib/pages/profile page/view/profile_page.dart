@@ -96,7 +96,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                           Text(
+                          Text(
                             controller.userPhone,
                             style: Theme.of(context)
                                 .textTheme
@@ -168,32 +168,31 @@ class _ProfilePageState extends State<ProfilePage> {
                                   return GestureDetector(
                                     child: CachedNetworkImage(
                                       imageUrl: post.url,
-                                      imageBuilder:
-                                          (context, imageProvider) =>
-                                              Container(
+                                      imageBuilder: (context, imageProvider) =>
+                                          Container(
                                         decoration: BoxDecoration(
                                           image: DecorationImage(
                                             image: imageProvider,
                                             fit: BoxFit.cover,
                                           ),
-                                          borderRadius:
-                                              const BorderRadius.all(
+                                          borderRadius: const BorderRadius.all(
                                             Radius.circular(10),
                                           ),
                                         ),
                                       ),
-                                      width:
-                                          MediaQuery.of(context).size.width *
-                                              0.9,
-                                      height:
-                                          MediaQuery.of(context).size.width *
-                                              0.9,
                                       progressIndicatorBuilder:
                                           (context, url, downloadProgress) =>
                                               Center(
-                                        child: CircularProgressIndicator(
-                                            value: downloadProgress.progress),
-                                      ),
+                                                  child: Container(
+                                        width: 180,
+                                        height: 180,
+                                        decoration: const BoxDecoration(
+                                          image: DecorationImage(
+                                            image: AssetImage(
+                                                "lib/images/loading_leaves.gif"),
+                                          ),
+                                        ),
+                                      )),
                                       errorWidget: (context, url, error) =>
                                           const Icon(Icons.error),
                                     ),
@@ -203,8 +202,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                           builder: (BuildContext context) {
                                             return Wrap(children: <Widget>[
                                               ListTile(
-                                                  leading: const Icon(
-                                                      Icons.delete),
+                                                  leading:
+                                                      const Icon(Icons.delete),
                                                   title: const Text('Delete'),
                                                   onTap: () async {
                                                     var currentUser =
@@ -241,11 +240,17 @@ class _ProfilePageState extends State<ProfilePage> {
                             onNull: (_) => const Text('Nenhum post criado'),
                             onError: (_, error) => const Text(
                                 'Ocorreu um erro ao pesquisar os posts'),
-                            onPending: (_) => const Center(
-                              child: CircularProgressIndicator(
-                                color: Colors.blue,
+                            onPending: (_) => Center(
+                                    child: Container(
+                              width: 180,
+                              height: 180,
+                              decoration: const BoxDecoration(
+                                image: DecorationImage(
+                                  image: AssetImage(
+                                      "lib/images/loading_leaves.gif"),
+                                ),
                               ),
-                            ),
+                            )),
                             onUnstarted: (_) => const Text(''),
                           )),
                     ],

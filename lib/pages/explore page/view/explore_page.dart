@@ -146,11 +146,16 @@ class _ExplorePageState extends State<ExplorePage> {
                       onNull: (_) => const Text('Nenhum post criado'),
                       onError: (_, error) =>
                           const Text('Ocorreu um erro ao pesquisar os posts'),
-                      onPending: (_) => const Center(
-                        child: CircularProgressIndicator(
-                          color: MyColors.primarygreen,
+                      onPending: (_) => Center(
+                          child: Container(
+                        width: 180,
+                        height: 180,
+                        decoration: const BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage("lib/images/loading_leaves.gif"),
+                          ),
                         ),
-                      ),
+                      )),
                       onUnstarted: (_) => const Text(''),
                     )),
               ],
