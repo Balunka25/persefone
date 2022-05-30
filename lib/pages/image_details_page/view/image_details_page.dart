@@ -57,8 +57,8 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
         child: Scaffold(
             backgroundColor: Colors.transparent,
             appBar: AppBar(
-              backgroundColor: Colors.transparent,
               elevation: 0,
+              backgroundColor: Colors.transparent,
               leading: IconButton(
             icon: const Icon(
               Icons.arrow_back_ios,
@@ -108,6 +108,7 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
             ),
             const SizedBox(height: 30),
             ElevatedButton(
+              
               onPressed: () async {
                 openWhatsapp();
               },
@@ -128,7 +129,7 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
               onPressed: (() async => {await _shareContent()}),
               icon: const Icon(Icons.share, color: MyColors.primarydark),
             ),
-            Spacer(),
+            const Spacer(),
             Row(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -137,7 +138,7 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
                   child: Lottie.network(
                       "https://assets3.lottiefiles.com/packages/lf20_c9bkfhmo.json",
                       fit: BoxFit.fill,
-                      height: 150),
+                      height: 100),
                 )
               ],
             )
