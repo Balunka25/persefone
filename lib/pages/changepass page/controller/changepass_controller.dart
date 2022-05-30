@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobx/mobx.dart';
-
-import '../../../core/models/user_model.dart';
 part 'changepass_controller.g.dart';
 
 class ChangePassController = _ChangePassControllerBase
