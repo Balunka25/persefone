@@ -128,8 +128,8 @@ class _ExplorePageState extends State<ExplorePage> {
                                         (context, url, downloadProgress) =>
                                             Center(
                                                 child: Container(
-                                      width: 180,
-                                      height: 180,
+                                      width: 230,
+                                      height: 230,
                                       decoration: const BoxDecoration(
                                         image: DecorationImage(
                                           image: AssetImage(

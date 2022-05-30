@@ -1,11 +1,16 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:persefone/pages/profile%20page/view/profile_page.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../../design/my_colors.dart';
 import '../../register page/controller/register_controller.dart';
+import 'package:http/http.dart' as http;
 
 class ImageDetailsPage extends StatefulWidget {
   final String? imageUrl;
@@ -27,7 +32,14 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
   }
 
   _shareContent() async {
-    Share.share(widget.imageUrl!);
+    final imageurl = widget.imageUrl;
+    final uri = Uri.parse(imageurl!);
+    final response = await http.get(uri);
+    final bytes = response.bodyBytes;
+    final temp = await getTemporaryDirectory();
+    final path = '${temp.path}/image.jpg';
+    File(path).writeAsBytesSync(bytes);
+    await Share.shareFiles([path]);
   }
 
   String? phoneNumber;
@@ -95,7 +107,8 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
                 const SizedBox(height: 30),
                 ElevatedButton(
                   onPressed: () async {
-                    openWhatsapp();
+                    await openWhatsapp();
+                    _shareContent();
                   },
                   child: Text("Contatar",
                       style: Theme.of(context)
