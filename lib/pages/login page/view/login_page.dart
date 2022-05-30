@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:persefone/core/widgets/dialog_box.dart';
 import 'package:persefone/design/my_colors.dart';
 import 'package:persefone/pages/explore%20page/view/explore_page.dart';

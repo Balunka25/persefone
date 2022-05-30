@@ -51,6 +51,20 @@ var imageRepository = ImageRepository();
     }
 
     @observable
+    String userPhone = '';
+
+    @action
+    Future<void> getUserPhone() async {
+    var currentUser = FirebaseAuth.instance.currentUser;
+    final DocumentReference document =
+        FirebaseFirestore.instance.collection("users").doc(currentUser!.uid);
+    await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
+      Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
+        userPhone = data['phone'];
+      });
+    }
+
+    @observable
     int totalImages = 0;
 
     Future<void> countDocuments() async {
