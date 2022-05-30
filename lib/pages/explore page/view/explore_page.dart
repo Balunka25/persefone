@@ -84,45 +84,20 @@ class _ExplorePageState extends State<ExplorePage> {
                             var post = data[index];
                             return Stack(
                               children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color:
-                                        MyColors.primarygreen.withOpacity(0.5),
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(10),
-                                    ),
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    FavoriteButton(
-                                      iconSize: 50,
-                                      iconColor:
-                                          MyColors.primaryyellow,
-                                      isFavorite: post.isFavorite,
-                                      valueChanged: (_isFavorite) async {
-                                        await controller.manageFavorite(post);
-                                      },
-                                    ),
-                                  ],
-                                ),
                                 GestureDetector(
                                   child: CachedNetworkImage(
                                     imageUrl: post.url,
                                     imageBuilder: (context, imageProvider) =>
                                         Container(
-                                      width: 100,
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
                                             image: imageProvider,
-                                            fit: BoxFit.fitWidth),
+                                            fit: BoxFit.cover),
                                         borderRadius: const BorderRadius.all(
                                           Radius.circular(10),
                                         ),
                                       ),
                                     ),
-                                    width: 100,
                                     progressIndicatorBuilder:
                                         (context, url, downloadProgress) =>
                                             Center(
@@ -144,12 +119,24 @@ class _ExplorePageState extends State<ExplorePage> {
                                       context,
                                       MaterialPageRoute(
                                         builder: ((context) => ImageDetailsPage(
-                                              imageUrl: post.url,
-                                              ownerId: post.owner_id
-                                            )),
+                                            imageUrl: post.url,
+                                            ownerId: post.owner_id)),
                                       ),
                                     );
                                   },
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    FavoriteButton(
+                                      iconSize: 50,
+                                      iconColor: MyColors.primaryyellow,
+                                      isFavorite: post.isFavorite,
+                                      valueChanged: (_isFavorite) async {
+                                        await controller.manageFavorite(post);
+                                      },
+                                    ),
+                                  ],
                                 ),
                               ],
                             );
@@ -165,8 +152,7 @@ class _ExplorePageState extends State<ExplorePage> {
                         ),
                       ),
                       onUnstarted: (_) => const Text(''),
-                    )
-                    ),
+                    )),
               ],
             ),
           );
