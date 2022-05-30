@@ -6,7 +6,6 @@ import 'package:mobx_widget/mobx_widget.dart';
 import 'package:persefone/core/widgets/stylish_drawer.dart';
 import 'package:persefone/design/my_colors.dart';
 import 'package:persefone/pages/image_details_page/view/image_details_page.dart';
-
 import '../../../core/widgets/custom_appbar.dart';
 import '../../../core/models/image_model.dart';
 import '../controller/all_images_controller.dart';

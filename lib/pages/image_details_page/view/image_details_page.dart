@@ -48,111 +48,109 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-      return Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("lib/images/backgroud.png"), fit: BoxFit.cover),
+    return Container(
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage("lib/images/backgroud.png"), fit: BoxFit.cover),
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          leading: IconButton(
+              icon: const Icon(
+                Icons.arrow_back_ios,
+                size: 30,
+                color: Colors.orange,
+              ),
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                            const ExplorePage()));
+              }),
         ),
-        child: Scaffold(
-            backgroundColor: Colors.transparent,
-            appBar: AppBar(
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-              leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios,
-              size: 30,
-              color: Colors.orange,
-            ),
-            onPressed: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => const ExplorePage()));
-            }),),
-            body: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 80),
-                  child: Center(
-                    child: CachedNetworkImage(
-                      imageUrl: widget.imageUrl!,
-                      imageBuilder: (context, imageProvider) => Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: imageProvider, fit: BoxFit.cover),
-                          borderRadius: const BorderRadius.all(
-                            Radius.circular(10),
-                          ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Center(
+                  child: CachedNetworkImage(
+                    imageUrl: widget.imageUrl!,
+                    imageBuilder: (context, imageProvider) => Container(
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: imageProvider, fit: BoxFit.cover),
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(10),
                         ),
                       ),
-                  width: 300,
-                  height: 400,
-                  progressIndicatorBuilder: (context, url, downloadProgress) =>
-                      Center(
-                    child: CircularProgressIndicator(
-                        value: downloadProgress.progress),
+                    ),
+                    width: 300,
+                    height: 400,
+                    progressIndicatorBuilder: (context, url, downloadProgress) =>
+                        Center(
+                      child: CircularProgressIndicator(
+                          value: downloadProgress.progress),
+                    ),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
                   ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              username,
-              style: Theme.of(context)
-                  .textTheme
-                  .headline1!
-                  .copyWith(color: MyColors.primarygreen),
-            ),
-            const SizedBox(height: 30),
-            ElevatedButton(
-              
-              onPressed: () async {
-                openWhatsapp();
-              },
-              child: Text("Contatar",
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline6!
-                      .copyWith(fontSize: 28)),
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(MyColors.primaryyellow),
+              const SizedBox(height: 10),
+              Text(
+                username,
+                style: Theme.of(context)
+                    .textTheme
+                    .headline1!
+                    .copyWith(color: MyColors.primarygreen),
               ),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            IconButton(
-              onPressed: (() async => {await _shareContent()}),
-              icon: const Icon(Icons.share, color: MyColors.primarydark),
-            ),
-            Spacer(),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              // mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                 
-                  child: Lottie.network(
-                      "https://assets3.lottiefiles.com/packages/lf20_c9bkfhmo.json",
-                      fit: BoxFit.fill,
-                      height: 100),
-                )
-              ],
-            )
-          ],
+              const SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () async {
+                  openWhatsapp();
+                },
+                child: Text("Contatar",
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline6!
+                        .copyWith(fontSize: 28)),
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(MyColors.primaryyellow),
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              IconButton(
+                onPressed: (() async => {await _shareContent()}),
+                icon: const Icon(Icons.share, color: MyColors.primarydark),
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: Lottie.network(
+                        "https://assets3.lottiefiles.com/packages/lf20_c9bkfhmo.json",
+                        fit: BoxFit.fill,
+                        height: 100),
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
-
   }
 
   Future<void> getPhoneNumber() async {
-    var currentUser = FirebaseAuth.instance.currentUser;
     final DocumentReference document =
         FirebaseFirestore.instance.collection("users").doc(widget.ownerId);
     await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
@@ -164,7 +162,6 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
   }
 
   Future<void> getUsername() async {
-    var currentUser = FirebaseAuth.instance.currentUser;
     final DocumentReference document =
         FirebaseFirestore.instance.collection("users").doc(widget.ownerId);
     await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
