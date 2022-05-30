@@ -9,7 +9,6 @@ import 'package:persefone/pages/profile%20page/view/profile_page.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../../design/my_colors.dart';
-import '../../register page/controller/register_controller.dart';
 import 'package:http/http.dart' as http;
 
 class ImageDetailsPage extends StatefulWidget {
@@ -47,19 +46,7 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final _controller = RegisterController();
-    if (username == null) {
-      return Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("lib/images/backgroud.png"), fit: BoxFit.cover),
-        ),
-        child: const Center(
-          child: CircularProgressIndicator(),
-        ),
-      );
-    } else {
+  
       return Container(
         width: double.infinity,
         decoration: const BoxDecoration(
@@ -126,7 +113,6 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
               ],
             )),
       );
-    }
   }
 
   Future<void> getPhoneNumber() async {
