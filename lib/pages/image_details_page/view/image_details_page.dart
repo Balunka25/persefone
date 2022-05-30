@@ -48,30 +48,42 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage("lib/images/backgroud.png"), fit: BoxFit.cover),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 80),
-              child: Center(
-                child: CachedNetworkImage(
-                  imageUrl: widget.imageUrl!,
-                  imageBuilder: (context, imageProvider) => Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: imageProvider, fit: BoxFit.cover),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(10),
+      return Container(
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("lib/images/backgroud.png"), fit: BoxFit.cover),
+        ),
+        child: Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              size: 30,
+              color: Colors.orange,
+            ),
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => const ExplorePage()));
+            }),),
+            body: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 80),
+                  child: Center(
+                    child: CachedNetworkImage(
+                      imageUrl: widget.imageUrl!,
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: imageProvider, fit: BoxFit.cover),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
                   width: 300,
                   height: 400,
                   progressIndicatorBuilder: (context, url, downloadProgress) =>
@@ -138,6 +150,7 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
         ),
       ),
     );
+
   }
 
   Future<void> getPhoneNumber() async {
