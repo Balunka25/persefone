@@ -10,6 +10,8 @@ import 'package:persefone/pages/favorite%20page/controller/favorite_controller.d
 import 'package:persefone/core/widgets/custom_appbar.dart';
 import 'package:persefone/core/models/image_model.dart';
 
+import 'widgets/app_bar.dart';
+
 class FavoritePage extends StatefulWidget {
   const FavoritePage({Key? key}) : super(key: key);
 
@@ -37,7 +39,7 @@ class _FavoritePageState extends State<FavoritePage> {
         child: Scaffold(
           drawer: const StylishDrawer(),
           backgroundColor: Colors.transparent,
-          appBar: CustomAppbar(),
+          appBar: Appbar(),
           body: Observer(builder: (_) {
             final favorites = _controller.favoriteList;
             return _controller.favoriteStatus.status == Status.loading
