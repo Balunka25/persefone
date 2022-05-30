@@ -1,14 +1,12 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:mobx_widget/mobx_widget.dart';
 import 'package:persefone/core/generics/resource.dart';
 import 'package:persefone/core/widgets/stylish_drawer.dart';
-import 'package:persefone/design/my_colors.dart';
 import 'package:persefone/pages/favorite%20page/controller/favorite_controller.dart';
 import 'package:persefone/core/widgets/custom_appbar.dart';
-import 'package:persefone/core/models/image_model.dart';
+
+import '../../image_details_page/view/image_details_page.dart';
 
 import 'widgets/app_bar.dart';
 
@@ -48,14 +46,64 @@ class _FavoritePageState extends State<FavoritePage> {
                       "https://assets10.lottiefiles.com/packages/lf20_3lmp8ylk.json",
                     ),
                   )
-                : ListView( 
-                  children: [
-                    for(final favorite in favorites) 
-                        CachedNetworkImage(imageUrl: favorite['url'],)
-                  ],
-                );
+                : ListView(children: [
+                    for (final favorite in favorites)
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        // child: CachedNetworkImage(
+                        //   imageUrl: favorite['url'],
+                        //   // imageBuilder: (context, imageProvider) => Container(
+                        //   //   decoration: BoxDecoration(
+                        //   //     image: DecorationImage(
+                        //   //         image: imageProvider, fit: BoxFit.cover),
+                        //   //     borderRadius: const BorderRadius.all(
+                        //   //       Radius.circular(10),
+                        //   //     ),
+                        //   //   ),
+                        //   // ),
+                        //   progressIndicatorBuilder:
+                        //       (context, url, downloadProgress) => Center(
+                        //           child: Container(
+                        //     width: 180,
+                        //     height: 180,
+                        //     decoration: const BoxDecoration(
+                        //       image: DecorationImage(
+                        //         image:
+                        //             AssetImage("lib/images/loading_leaves.gif"),
+                        //       ),
+                        //     ),
+                        //   )),
+                        //   errorWidget: (context, url, error) =>
+                        //       const Icon(Icons.error),
+                        // ),
+                        child: GestureDetector(
+                          child: Container(
+                            width: 300,
+                            height: 400,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: NetworkImage(favorite['url']),
+                                  fit: BoxFit.cover),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                            ),
+                          ),
+                          onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: ((context) => ImageDetailsPage(
+                                              imageUrl: favorite['url'],
+                                              ownerId: favorite['owner_id']
+                                            )),
+                                      ),
+                                    );
+                                  },
+                        ),
+                      )
+                  ]);
           }),
-        )
-      );
+        ));
   }
 }

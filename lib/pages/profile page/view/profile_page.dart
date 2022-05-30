@@ -5,8 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx_widget/mobx_widget.dart';
-import 'package:persefone/core/widgets/dialog_box.dart';
-import 'package:persefone/pages/login%20page/view/login_page.dart';
 import 'package:persefone/pages/profile%20page/controller/user_image_controller.dart';
 import 'package:persefone/pages/profile%20page/view/widgets/profile_page_appbar.dart';
 import '../../../design/my_colors.dart';
@@ -36,6 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
     await controller.countDocuments();
     await controller.getEmail();
     await controller.getUserName();
+    await controller.getUserPhone();
     await controller.getImages();
   }
 
@@ -92,6 +91,28 @@ class _ProfilePageState extends State<ProfilePage> {
                                 .headline4!
                                 .copyWith(color: MyColors.primarydark),
                           )
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                           Text(
+                            controller.userPhone,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline4!
+                                .copyWith(color: MyColors.primarydark),
+                          ),
+                          Container(
+                            height: 80,
+                            width: 80,
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      "lib/images/profile_page_vaso.png"),
+                                  fit: BoxFit.cover),
+                            ),
+                          ),
                         ],
                       ),
                       Row(

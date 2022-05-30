@@ -57,6 +57,22 @@ mixin _$UserImageController on _UserImageControllerBase, Store {
     });
   }
 
+  late final _$userPhoneAtom =
+      Atom(name: '_UserImageControllerBase.userPhone', context: context);
+
+  @override
+  String get userPhone {
+    _$userPhoneAtom.reportRead();
+    return super.userPhone;
+  }
+
+  @override
+  set userPhone(String value) {
+    _$userPhoneAtom.reportWrite(value, super.userPhone, () {
+      super.userPhone = value;
+    });
+  }
+
   late final _$totalImagesAtom =
       Atom(name: '_UserImageControllerBase.totalImages', context: context);
 
@@ -89,6 +105,14 @@ mixin _$UserImageController on _UserImageControllerBase, Store {
     return _$getUserNameAsyncAction.run(() => super.getUserName());
   }
 
+  late final _$getUserPhoneAsyncAction =
+      AsyncAction('_UserImageControllerBase.getUserPhone', context: context);
+
+  @override
+  Future<void> getUserPhone() {
+    return _$getUserPhoneAsyncAction.run(() => super.getUserPhone());
+  }
+
   late final _$_UserImageControllerBaseActionController =
       ActionController(name: '_UserImageControllerBase', context: context);
 
@@ -109,6 +133,7 @@ mixin _$UserImageController on _UserImageControllerBase, Store {
 imagesUser: ${imagesUser},
 userEmail: ${userEmail},
 userName: ${userName},
+userPhone: ${userPhone},
 totalImages: ${totalImages}
     ''';
   }

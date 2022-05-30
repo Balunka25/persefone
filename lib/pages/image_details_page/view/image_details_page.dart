@@ -1,14 +1,18 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:persefone/pages/explore%20page/view/explore_page.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:persefone/pages/profile%20page/view/profile_page.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../../design/my_colors.dart';
 import '../../register page/controller/register_controller.dart';
+import 'package:http/http.dart' as http;
 
 class ImageDetailsPage extends StatefulWidget {
   final String? imageUrl;
@@ -26,13 +30,22 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
   void initState() {
     super.initState();
     getPhoneNumber();
+    getUsername();
   }
 
   _shareContent() async {
-    Share.share(widget.imageUrl!);
+    final imageurl = widget.imageUrl;
+    final uri = Uri.parse(imageurl!);
+    final response = await http.get(uri);
+    final bytes = response.bodyBytes;
+    final temp = await getTemporaryDirectory();
+    final path = '${temp.path}/image.jpg';
+    File(path).writeAsBytesSync(bytes);
+    await Share.shareFiles([path]);
   }
 
   String? phoneNumber;
+  String username = '';
 
   @override
   Widget build(BuildContext context) {
@@ -74,20 +87,19 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
                           image: imageProvider, fit: BoxFit.cover),
                       borderRadius: const BorderRadius.all(
                         Radius.circular(10),
+                      ),)),
+                      width: 300,
+                      height: 400,
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) => Center(
+                        child: CircularProgressIndicator(
+                            value: downloadProgress.progress),
                       ),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     ),
                   ),
-                  width: 300,
-                  height: 400,
-                  progressIndicatorBuilder: (context, url, downloadProgress) =>
-                      Center(
-                    child: CircularProgressIndicator(
-                        value: downloadProgress.progress),
-                  ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
-              ),
-            ),
             const SizedBox(height: 30),
             ElevatedButton(
               // onPressed: () async {
@@ -143,7 +155,21 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
         FirebaseFirestore.instance.collection("users").doc(widget.ownerId);
     await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
       Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
-      phoneNumber = data['phone'];
+      setState(() {
+        phoneNumber = data['phone'];
+      });
+    });
+  }
+
+  Future<void> getUsername() async {
+    var currentUser = FirebaseAuth.instance.currentUser;
+    final DocumentReference document =
+        FirebaseFirestore.instance.collection("users").doc(widget.ownerId);
+    await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
+      Map<String, dynamic> data = snapshot.data()! as Map<String, dynamic>;
+      setState(() {
+        username = data['name'];
+      });
     });
   }
 
