@@ -4,6 +4,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
+import 'package:persefone/pages/explore%20page/view/explore_page.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:persefone/pages/profile%20page/view/profile_page.dart';
 import 'package:share_plus/share_plus.dart';
@@ -46,7 +48,6 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-  
       return Container(
         width: double.infinity,
         decoration: const BoxDecoration(
@@ -83,36 +84,53 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
-                Text(
-                  username,
+            const SizedBox(height: 30),
+            ElevatedButton(
+              // onPressed: () async {
+              //   int intValue = int.parse(
+              //       _controller.phone.replaceAll(RegExp('[^0-9]'), ''));
+              //   String url =
+              //       "https://api.whatsapp.com/send?phone=+55$intValue&text=Ol%C3%A1!%20Vi%20seu%20perfil%20no%20D%C3%A1%20um%20Help!%20e%20gostaria%20de%20uma%20monitoria,%20poderia%20me%20ajudar?";
+              //   await launchURL(url);
+              // },
+              onPressed: () async {
+                openWhatsapp();
+              },
+              child: Text("Contatar",
                   style: Theme.of(context)
                       .textTheme
-                      .headline1!
-                      .copyWith(color: MyColors.primarygreen),
-                ),
-                const SizedBox(height: 30),
-                ElevatedButton(
-                  onPressed: () async {
-                    await openWhatsapp();
-                    _shareContent();
-                  },
-                  child: Text("Contatar",
-                      style: Theme.of(context)
-                          .textTheme
-                          .headline6!
-                          .copyWith(fontSize: 28)),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        MyColors.primaryyellow),
-                  ),
-                ),
-                IconButton(
-                    onPressed: (() async => {await _shareContent()}),
-                    icon: const Icon(Icons.share, color: MyColors.primarydark)),
+                      .headline6!
+                      .copyWith(fontSize: 28)),
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(MyColors.primaryyellow),
+              ),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            IconButton(
+              onPressed: (() async => {await _shareContent()}),
+              icon: const Icon(Icons.share, color: MyColors.primarydark),
+            ),
+            Spacer(),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              // mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Lottie.network(
+                      "https://assets3.lottiefiles.com/packages/lf20_c9bkfhmo.json",
+                      fit: BoxFit.fill,
+                      height: 150),
+                )
               ],
-            )),
-      );
+            )
+          ],
+        ),
+      ),
+    );
   }
 
   Future<void> getPhoneNumber() async {

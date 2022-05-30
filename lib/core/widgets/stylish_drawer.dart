@@ -53,8 +53,8 @@ class _StylishDrawerState extends State<StylishDrawer> {
                     child: Stack(
                       children: [
                         Container(
-                          width: 220,
-                          height: 220,
+                          width: 200,
+                          height: 180,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage(
@@ -194,4 +194,5 @@ class DrawerStyle extends CustomClipper<Path> {
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
     throw UnimplementedError();
   }
+  
 }
