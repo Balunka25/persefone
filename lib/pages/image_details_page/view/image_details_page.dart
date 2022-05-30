@@ -136,6 +136,7 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
+                 
                   child: Lottie.network(
                       "https://assets3.lottiefiles.com/packages/lf20_c9bkfhmo.json",
                       fit: BoxFit.fill,
