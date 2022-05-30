@@ -56,6 +56,18 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
         ),
         child: Scaffold(
             backgroundColor: Colors.transparent,
+            appBar: AppBar(leading: IconButton(
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              size: 30,
+              color: Colors.orange,
+            ),
+            onPressed: () {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (BuildContext context) => const ExplorePage()));
+            }),),
             body: Column(
               children: [
                 Padding(
@@ -131,6 +143,7 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
         ),
       ),
     );
+
   }
 
   Future<void> getPhoneNumber() async {
