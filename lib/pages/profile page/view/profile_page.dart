@@ -160,7 +160,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     const SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2,
                                   crossAxisSpacing: 20,
-                                  mainAxisSpacing: 5,
+                                  mainAxisSpacing: 20,
                                 ),
                                 itemCount: controller.totalImages,
                                 itemBuilder: (context, index) {

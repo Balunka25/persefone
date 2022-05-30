@@ -56,7 +56,10 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
         ),
         child: Scaffold(
             backgroundColor: Colors.transparent,
-            appBar: AppBar(leading: IconButton(
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              leading: IconButton(
             icon: const Icon(
               Icons.arrow_back_ios,
               size: 30,
@@ -105,13 +108,6 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
             ),
             const SizedBox(height: 30),
             ElevatedButton(
-              // onPressed: () async {
-              //   int intValue = int.parse(
-              //       _controller.phone.replaceAll(RegExp('[^0-9]'), ''));
-              //   String url =
-              //       "https://api.whatsapp.com/send?phone=+55$intValue&text=Ol%C3%A1!%20Vi%20seu%20perfil%20no%20D%C3%A1%20um%20Help!%20e%20gostaria%20de%20uma%20monitoria,%20poderia%20me%20ajudar?";
-              //   await launchURL(url);
-              // },
               onPressed: () async {
                 openWhatsapp();
               },
@@ -135,7 +131,6 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
             Spacer(),
             Row(
               mainAxisSize: MainAxisSize.min,
-              // mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
@@ -154,7 +149,6 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
   }
 
   Future<void> getPhoneNumber() async {
-    var currentUser = FirebaseAuth.instance.currentUser;
     final DocumentReference document =
         FirebaseFirestore.instance.collection("users").doc(widget.ownerId);
     await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
@@ -166,7 +160,6 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
   }
 
   Future<void> getUsername() async {
-    var currentUser = FirebaseAuth.instance.currentUser;
     final DocumentReference document =
         FirebaseFirestore.instance.collection("users").doc(widget.ownerId);
     await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
