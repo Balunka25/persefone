@@ -11,7 +11,6 @@ import 'package:persefone/pages/profile%20page/view/profile_page.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../../design/my_colors.dart';
-import '../../register page/controller/register_controller.dart';
 import 'package:http/http.dart' as http;
 
 class ImageDetailsPage extends StatefulWidget {
@@ -49,45 +48,30 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final _controller = RegisterController();
-    return Container(
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage("lib/images/backgroud.png"), fit: BoxFit.cover),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          leading: IconButton(
-              icon: const Icon(
-                Icons.arrow_back_ios,
-                size: 30,
-                color: Colors.orange,
-              ),
-              onPressed: () {
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                            const ExplorePage()));
-              }),
+      return Container(
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("lib/images/backgroud.png"), fit: BoxFit.cover),
         ),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 80),
-              child: Center(
-                child: CachedNetworkImage(
-                  imageUrl: widget.imageUrl!,
-                  imageBuilder: (context, imageProvider) => Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image: imageProvider, fit: BoxFit.cover),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(10),
-                      ),)),
+        child: Scaffold(
+            backgroundColor: Colors.transparent,
+            body: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 80),
+                  child: Center(
+                    child: CachedNetworkImage(
+                      imageUrl: widget.imageUrl!,
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: imageProvider, fit: BoxFit.cover),
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                        ),
+                      ),
                       width: 300,
                       height: 400,
                       progressIndicatorBuilder:
