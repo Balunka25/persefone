@@ -32,4 +32,13 @@ class ImageRepository {
     favoritesUser = result.map((map) => ImageModel(map["id"], map["owner_id"], map["url"])).toList();
     return favoritesUser;
   }
+
+  // Future<List<ImageModel>> getClickedOnUserImages() async {
+  //   List<ImageModel> postsUser = [];
+  //   var postsBd = await bd.collection('users').doc().collection("images").get();
+  //   final postQuery = postsBd.docs;
+  //   final postDocs= postQuery.map((e) => e.data()).toList();
+  //   postsUser = postDocs.map((map) => ImageModel(map["id"], map["owner_id"], map["url"])).toList();
+  //   return postsUser;
+  // }
 }

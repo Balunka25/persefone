@@ -8,6 +8,7 @@ import 'package:lottie/lottie.dart';
 import 'package:persefone/pages/explore%20page/view/explore_page.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:persefone/pages/profile%20page/view/profile_page.dart';
+import 'package:persefone/pages/user_page/view/user_page.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import '../../../design/my_colors.dart';
@@ -102,12 +103,22 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
                 ),
               ),
               const SizedBox(height: 10),
-              Text(
-                username,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline1!
-                    .copyWith(color: MyColors.primarygreen),
+              InkWell(
+                child: Text(
+                  username,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline1!
+                      .copyWith(color: MyColors.primarygreen),
+                ),
+                onTap: (){
+                  Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => UserPage(
+                                ownerId: widget.ownerId!,
+                              ))));
+                },
               ),
               const SizedBox(height: 30),
               Row(
