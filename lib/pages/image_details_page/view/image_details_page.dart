@@ -110,26 +110,31 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
                     .copyWith(color: MyColors.primarygreen),
               ),
               const SizedBox(height: 30),
-              ElevatedButton(
-                onPressed: () async {
-                  openWhatsapp();
-                },
-                child: Text("Contatar",
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline6!
-                        .copyWith(fontSize: 28)),
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(MyColors.primaryyellow),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () async {
+                      openWhatsapp();
+                    },
+                    child: Text("Contatar",
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6!
+                            .copyWith(fontSize: 28)),
+                    style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(MyColors.primaryyellow),
+                    ),
+                  ),
+                  IconButton(
+                onPressed: (() async => {await _shareContent()}),
+                icon: const Icon(Icons.share, color: MyColors.primarydark),
+              ),
+                ],
               ),
               const SizedBox(
                 height: 16,
-              ),
-              IconButton(
-                onPressed: (() async => {await _shareContent()}),
-                icon: const Icon(Icons.share, color: MyColors.primarydark),
               ),
               Row(
                 mainAxisSize: MainAxisSize.min,
