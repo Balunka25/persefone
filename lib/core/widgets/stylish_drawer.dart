@@ -25,16 +25,16 @@ class _StylishDrawerState extends State<StylishDrawer> {
         height: 800,
         child: Stack(
           children: <Widget>[
-            // BackdropFilter(
-              // filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-               Container(
+            BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
+              child: Container(
                 decoration: BoxDecoration(
                     image: const DecorationImage(
-                        image: AssetImage("lib/images/fallingleave.gif"),
+                        image: AssetImage("lib/images/leaves.gif"),
                         fit: BoxFit.cover),
                     color: MyColors.primarygreen.withOpacity(0.5)),
               ),
-            // ),
+            ),
             const SizedBox(
               height: 60,
             ),
