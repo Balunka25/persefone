@@ -12,7 +12,7 @@ abstract class _SplashPageControllerBase with Store {
   @action
   Future checkIfUserIsLoggedIn(BuildContext context) async {
     await Future.delayed(
-      const Duration(seconds: 3),
+      const Duration(seconds: 4),
     );
    FirebaseAuth.instance.authStateChanges().listen(
       (User? user) {

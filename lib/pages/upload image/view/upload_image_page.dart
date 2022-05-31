@@ -236,7 +236,7 @@ class _UploadImagePageState extends State<UploadImagePage> {
                   },
                   icon: const FaIcon(FontAwesomeIcons.seedling),
                   label: Text(
-                    "Share your plant",
+                    "Compartilhe sua planta",
                     style: Theme.of(context).textTheme.headline5,
                   ),
                 )
