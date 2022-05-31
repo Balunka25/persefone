@@ -41,9 +41,11 @@ class _StylishDrawerState extends State<StylishDrawer> {
             Container(
               margin: const EdgeInsets.only(top: 20),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   const SizedBox(
-                    height: 12,
+                    height: 64,
                   ),
                   InkWell(
                     onTap: () {
@@ -52,10 +54,10 @@ class _StylishDrawerState extends State<StylishDrawer> {
                           MaterialPageRoute(
                               builder: ((context) => const ProfilePage())));
                     },
-                    child: Column(
+                    child: Stack(
                       children: [
                         Container(
-                          width: 200,
+                          width: 180,
                           height: 180,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
@@ -64,12 +66,16 @@ class _StylishDrawerState extends State<StylishDrawer> {
                             ),
                           ),
                         ),
-                        Text(
-                          "Perfil",
-                          style: Theme.of(context)
-                              .textTheme
-                              .headline3!
-                              .copyWith(color: Colors.orangeAccent),
+                        Positioned(
+                          top: 140,
+                          left: 65,
+                          child: Text(
+                            "Perfil",
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline3!
+                                .copyWith(color: Colors.orangeAccent),
+                          ),
                         )
                       ],
                     ),
@@ -90,14 +96,13 @@ class _StylishDrawerState extends State<StylishDrawer> {
                           height: 180,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage(
-                                  "lib/images/heart.png"),
+                              image: AssetImage("lib/images/heart.png"),
                             ),
                           ),
                         ),
                         Positioned(
                           top: 140,
-                          left: 65,
+                          left: 50,
                           child: Text(
                             "Favoritos",
                             style: Theme.of(context)
@@ -121,7 +126,7 @@ class _StylishDrawerState extends State<StylishDrawer> {
                       children: [
                         Container(
                           width: 180,
-                          height: 150,
+                          height: 180,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage("lib/images/change_icon.png"),
@@ -135,16 +140,18 @@ class _StylishDrawerState extends State<StylishDrawer> {
                             "Mudar Senha",
                             style: Theme.of(context)
                                 .textTheme
-                                .headline3!
-                                .copyWith(color: Colors.orangeAccent),
+                                .headline4!
+                                .copyWith(color: Colors.orangeAccent, fontWeight: FontWeight.normal),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 30,),
+                  const SizedBox(
+                    height: 30,
+                  ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 40),
+                    padding: const EdgeInsets.only(left: 30),
                     child: Row(
                       children: [
                         InkWell(
