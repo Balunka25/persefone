@@ -32,10 +32,10 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             children: [
               const SizedBox(
-                height: 50,
+                height: 80,
               ),
               Image.asset(
-                'lib/images/logo2.png',
+                'lib/images/perse.png',
                 height: 200,
                 width: 250,
               ),
@@ -114,12 +114,15 @@ class _LoginPageState extends State<LoginPage> {
                           builder: (context) => const RegisterPage(),
                         ),
                       ),
-                      child: Text(
-                        "Não possui uma conta? Clique aqui!",
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline4!
-                            .copyWith(fontWeight: FontWeight.bold, fontSize: 12),
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 40),
+                        child: Text(
+                          "Não possui uma conta? Clique aqui!",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline4!
+                              .copyWith(fontWeight: FontWeight.bold, fontSize: 12),
+                        ),
                       ),
                     ),
                   ],
