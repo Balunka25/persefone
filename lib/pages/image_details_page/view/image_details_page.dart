@@ -15,8 +15,8 @@ import '../../../design/my_colors.dart';
 import 'package:http/http.dart' as http;
 
 class ImageDetailsPage extends StatefulWidget {
-  final String? imageUrl;
-  final String? ownerId;
+  final String imageUrl;
+  final String ownerId;
   const ImageDetailsPage(
       {Key? key, required this.imageUrl, required this.ownerId})
       : super(key: key);
@@ -35,7 +35,7 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
 
   _shareContent() async {
     final imageurl = widget.imageUrl;
-    final uri = Uri.parse(imageurl!);
+    final uri = Uri.parse(imageurl);
     final response = await http.get(uri);
     final bytes = response.bodyBytes;
     final temp = await getTemporaryDirectory();
@@ -81,7 +81,7 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
                 padding: const EdgeInsets.only(top: 20),
                 child: Center(
                   child: CachedNetworkImage(
-                    imageUrl: widget.imageUrl!,
+                    imageUrl: widget.imageUrl,
                     imageBuilder: (context, imageProvider) => Container(
                       decoration: BoxDecoration(
                         image: DecorationImage(
@@ -116,7 +116,7 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
                           context,
                           MaterialPageRoute(
                               builder: ((context) => UserPage(
-                                ownerId: widget.ownerId!,
+                                ownerId: widget.ownerId,
                               ))));
                 },
               ),

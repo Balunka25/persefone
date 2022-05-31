@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:persefone/core/models/image_model.dart';
 
-
 class ImageRepository {
   var bd = FirebaseFirestore.instance;
   var currentUser = FirebaseAuth.instance.currentUser;
@@ -33,12 +32,12 @@ class ImageRepository {
     return favoritesUser;
   }
 
-  // Future<List<ImageModel>> getClickedOnUserImages() async {
-  //   List<ImageModel> postsUser = [];
-  //   var postsBd = await bd.collection('users').doc().collection("images").get();
-  //   final postQuery = postsBd.docs;
-  //   final postDocs= postQuery.map((e) => e.data()).toList();
-  //   postsUser = postDocs.map((map) => ImageModel(map["id"], map["owner_id"], map["url"])).toList();
-  //   return postsUser;
-  // }
+  Future<List<ImageModel>> getClickedOnUserImages(String ownerId) async {
+    List<ImageModel> postsUser = [];
+    var postsBd = await bd.collection('users').doc(ownerId).collection("images").get();
+    final postQuery = postsBd.docs;
+    final postDocs= postQuery.map((e) => e.data()).toList();
+    postsUser = postDocs.map((map) => ImageModel(map["id"], map["owner_id"], map["url"])).toList();
+    return postsUser;
+  }
 }
