@@ -19,12 +19,12 @@ final _controller = SplashPageController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFF38c172),
       body: Center(
         child: Observer(builder: (_) {
           _controller.checkIfUserIsLoggedIn(context);
           return Center(
-            child: Lottie.network("https://assets2.lottiefiles.com/packages/lf20_2nalgjvd.json"),
+            child: Lottie.network("https://assets9.lottiefiles.com/packages/lf20_juote5w5.json"),
           );
         }),
       ),

@@ -55,6 +55,7 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         appBar: AppBar(
+          centerTitle: true,
           elevation: 0,
           backgroundColor: Colors.transparent,
           leading: IconButton(
