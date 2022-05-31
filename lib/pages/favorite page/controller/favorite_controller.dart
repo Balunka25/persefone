@@ -29,4 +29,8 @@ abstract class _FavoriteControllerBase with Store {
       favoriteStatus = Resource.failed();
     }
   }
+
+
+
+  
 }

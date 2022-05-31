@@ -14,6 +14,8 @@ class StylishDrawer extends StatefulWidget {
 }
 
 class _StylishDrawerState extends State<StylishDrawer> {
+  bool selected = false;
+
   @override
   Widget build(BuildContext context) {
     return ClipPath(
@@ -38,7 +40,7 @@ class _StylishDrawerState extends State<StylishDrawer> {
             ),
             Container(
               margin: const EdgeInsets.only(top: 20),
-              child: ListView(
+              child: Column(
                 children: <Widget>[
                   const SizedBox(
                     height: 12,
@@ -50,7 +52,7 @@ class _StylishDrawerState extends State<StylishDrawer> {
                           MaterialPageRoute(
                               builder: ((context) => const ProfilePage())));
                     },
-                    child: Stack(
+                    child: Column(
                       children: [
                         Container(
                           width: 200,
@@ -59,20 +61,16 @@ class _StylishDrawerState extends State<StylishDrawer> {
                             image: DecorationImage(
                               image: AssetImage(
                                   "lib/images/logo_profile_page.png"),
-                             
                             ),
                           ),
                         ),
-                        Positioned(
-                            top: 150,
-                            left: 65,
-                            child: Text(
-                              "Perfil",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .headline3!
-                                  .copyWith(color: Colors.black),
-                            ))
+                        Text(
+                          "Perfil",
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline3!
+                              .copyWith(color: Colors.black),
+                        )
                       ],
                     ),
                   ),
@@ -144,23 +142,56 @@ class _StylishDrawerState extends State<StylishDrawer> {
                       ],
                     ),
                   ),
-                  const SizedBox(height: 40),
-                  ListTile(
-                    // leading: const Icon(
-                    //   Icons.logout,
-                    //   color: MyColors.primarydark,
-                    //   size: 15,
-                    // ),
-                    title: const Text("Sair",
-                        style: TextStyle(
-                            color: MyColors.primarydark, fontSize: 10)),
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LoginPage(),
-                      ),
+                  const SizedBox(height: 30,),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 40),
+                    child: Row(
+                      children: [
+                        InkWell(
+                          child: const Text(
+                            "Sair",
+                            style: TextStyle(
+                                color: MyColors.primarydark, fontSize: 10),
+                            textAlign: TextAlign.center,
+                          ),
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LoginPage(),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
+                  // Stack(children: <Widget>[
+                  // SizedBox(
+                  //   height: 100,
+                  //   width: 100,
+                  //   child: AnimatedPositioned(
+                  //     width: selected ? 200.0 : 50.0,
+                  //     height: selected ? 50.0 : 200.0,
+                  //     top: selected ? 50.0 : 150.0,
+                  //     duration: const Duration(seconds: 2),
+                  //     curve: Curves.fastOutSlowIn,
+                  //     child: GestureDetector(
+                  //       onTap: () {
+                  //         setState(() {
+                  //           selected = !selected;
+                  //         });
+                  //       },
+                  //       child: Container(
+                  //         height: 100,
+                  //         width: 100,
+                  //         color: Colors.blue,
+                  //         child: const Center(child: Text('Tap me')),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+
+                  // ],
+                  // ),
                 ],
               ),
             )
@@ -194,5 +225,4 @@ class DrawerStyle extends CustomClipper<Path> {
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) {
     throw UnimplementedError();
   }
-  
 }
