@@ -28,7 +28,7 @@ abstract class _SplashPageControllerBase with Store {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => LoginPage(),
+              builder: (context) => const LoginPage(),
             ),
           );
         }

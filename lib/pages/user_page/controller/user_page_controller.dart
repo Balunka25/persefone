@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobx/mobx.dart';
-
 import '../../../core/models/image_model.dart';
 import '../../profile page/get_image/image_repository.dart';
 part 'user_page_controller.g.dart';
@@ -49,7 +47,6 @@ abstract class _UserPageControllerBase with Store {
 
   @action
   Future<void> getUsername() async {
-    var currentUser = FirebaseAuth.instance.currentUser;
     final DocumentReference document =
         FirebaseFirestore.instance.collection("users").doc(ownerId);
     await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
@@ -63,7 +60,6 @@ abstract class _UserPageControllerBase with Store {
 
   @action
   Future<void> getUserPhone() async {
-    var currentUser = FirebaseAuth.instance.currentUser;
     final DocumentReference document =
         FirebaseFirestore.instance.collection("users").doc(ownerId);
     await document.get().then<dynamic>((DocumentSnapshot snapshot) async {
