@@ -35,7 +35,7 @@ class _ChangePassPageState extends State<ChangePassPage> {
                 height: 50,
               ),
               Image.asset(
-                'lib/images/logo.png',
+                'lib/images/perse.png',
                 height: 200,
                 width: 250,
               ),

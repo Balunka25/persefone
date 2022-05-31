@@ -34,13 +34,13 @@ abstract class _FavoriteControllerBase with Store {
 
 
   @action
-  Future<void> removeFavorites(ImageModel favorite) async {
+  Future<void> removeFavorites(String id) async {
     try {
       await FirebaseFirestore.instance
           .collection('users')
           .doc(FirebaseAuth.instance.currentUser!.uid)
           .collection("favorites")
-          .doc(favorite.id)
+          .doc(id)
           .delete();
       
       await getUserFavorites();
