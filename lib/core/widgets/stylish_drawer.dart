@@ -18,7 +18,7 @@ class _StylishDrawerState extends State<StylishDrawer> {
   Widget build(BuildContext context) {
     return ClipPath(
       clipper: DrawerStyle(),
-      child: Container(
+      child: SizedBox(
         width: 500,
         height: 800,
         child: Stack(
@@ -27,7 +27,7 @@ class _StylishDrawerState extends State<StylishDrawer> {
               filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
               child: Container(
                 decoration: BoxDecoration(
-                    image: DecorationImage(
+                    image: const DecorationImage(
                         image: AssetImage("lib/images/leaves1.gif"),
                         fit: BoxFit.cover),
                     color: MyColors.primarygreen.withOpacity(0.5)),

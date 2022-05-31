@@ -1,13 +1,10 @@
 import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:persefone/pages/explore%20page/view/explore_page.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:persefone/pages/profile%20page/view/profile_page.dart';
 import 'package:persefone/pages/user_page/view/user_page.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -196,7 +193,7 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
       await launchUrlString(whatsappURl, mode: LaunchMode.externalApplication);
     } catch (error) {
       ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text("Whatsapp not installed")));
+          .showSnackBar(const SnackBar(content: Text("Whatsapp not installed")));
     }
   }
 }

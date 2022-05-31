@@ -14,7 +14,7 @@ abstract class _AllImagesControllerBase with Store {
   Future<void> manageFavorite(ImageModelExplorer image) async {
     final imageMap = {
       'id': image.id,
-      'owner_id': image.owner_id,
+      'owner_id': image.ownerId,
       'url': image.url
     };
 
@@ -64,7 +64,7 @@ abstract class _AllImagesControllerBase with Store {
 
       }
 
-      ImageModelExplorer newImage = ImageModelExplorer(image.id, image.owner_id, image.url, imageFavorite);
+      ImageModelExplorer newImage = ImageModelExplorer(image.id, image.ownerId, image.url, imageFavorite);
       imagesExplorer.add(newImage);
 
     }

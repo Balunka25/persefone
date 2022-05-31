@@ -1,9 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx_widget/mobx_widget.dart';
-import 'package:persefone/core/widgets/custom_appbar.dart';
 import 'package:persefone/pages/user_page/view/widgets/user_page_appbar.dart';
 import '../../../core/models/image_model.dart';
 import '../../../design/my_colors.dart';

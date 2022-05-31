@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:persefone/pages/login%20page/view/login_page.dart';
 import 'package:persefone/pages/splash_page/view/splash_page.dart';
 
 import 'design/theme.dart';
@@ -13,7 +12,7 @@ class MyApp extends StatelessWidget {
           title: 'Show Analytic',
           theme: theme(),
           debugShowCheckedModeBanner: false,
-          home: SplashPage(),
+          home: const SplashPage(),
         );
   }
 

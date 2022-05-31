@@ -120,7 +120,7 @@ class _ExplorePageState extends State<ExplorePage> {
                                       MaterialPageRoute(
                                         builder: ((context) => ImageDetailsPage(
                                             imageUrl: post.url,
-                                            ownerId: post.owner_id)),
+                                            ownerId: post.ownerId)),
                                       ),
                                     );
                                   },
