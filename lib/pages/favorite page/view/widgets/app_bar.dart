@@ -43,7 +43,7 @@ class Appbar extends StatelessWidget with PreferredSizeWidget {
           children: [
             const SizedBox(height: 10),
             Image.asset(
-              'lib/images/logo2.png',
+              'lib/images/perse.png',
               height: 130,
               width: 150,
             ),
