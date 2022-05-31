@@ -73,6 +73,16 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
                         builder: (BuildContext context) =>
                             const ExplorePage()));
               }),
+          title: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              LottieBuilder.network(
+                "https://assets10.lottiefiles.com/packages/lf20_rrxopmmf.json",
+                width: 200,
+                height: 60,
+              )
+            ],
+          ),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -93,12 +103,13 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
                     ),
                     width: 300,
                     height: 400,
-                    progressIndicatorBuilder: (context, url, downloadProgress) =>
-                        Center(
+                    progressIndicatorBuilder:
+                        (context, url, downloadProgress) => Center(
                       child: CircularProgressIndicator(
                           value: downloadProgress.progress),
                     ),
-                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                 ),
               ),
@@ -111,11 +122,11 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
                       .headline1!
                       .copyWith(color: MyColors.primarygreen),
                 ),
-                onTap: (){
+                onTap: () {
                   Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) => UserPage(
+                      context,
+                      MaterialPageRoute(
+                          builder: ((context) => UserPage(
                                 ownerId: widget.ownerId,
                               ))));
                 },
@@ -134,14 +145,14 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
                             .headline6!
                             .copyWith(fontSize: 28)),
                     style: ButtonStyle(
-                      backgroundColor:
-                          MaterialStateProperty.all<Color>(MyColors.primaryyellow),
+                      backgroundColor: MaterialStateProperty.all<Color>(
+                          MyColors.primaryyellow),
                     ),
                   ),
                   IconButton(
-                onPressed: (() async => {await _shareContent()}),
-                icon: const Icon(Icons.share, color: MyColors.primarydark),
-              ),
+                    onPressed: (() async => {await _shareContent()}),
+                    icon: const Icon(Icons.share, color: MyColors.primarydark),
+                  ),
                 ],
               ),
               const SizedBox(
