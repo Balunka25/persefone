@@ -53,9 +53,8 @@ mixin _$FavoriteController on _FavoriteControllerBase, Store {
       AsyncAction('_FavoriteControllerBase.removeFavorites', context: context);
 
   @override
-  Future<void> removeFavorites(ImageModel favorite) {
-    return _$removeFavoritesAsyncAction
-        .run(() => super.removeFavorites(favorite));
+  Future<void> removeFavorites(String id) {
+    return _$removeFavoritesAsyncAction.run(() => super.removeFavorites(id));
   }
 
   @override

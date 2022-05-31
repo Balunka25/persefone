@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:favorite_button/favorite_button.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:persefone/pages/explore%20page/view/explore_page.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:persefone/pages/favorite%20page/controller/favorite_controller.dart';
 import 'package:persefone/pages/user_page/view/user_page.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -43,6 +45,8 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
 
   String? phoneNumber;
   String username = '';
+  final _controller = FavoriteController();
+  
 
   @override
   Widget build(BuildContext context) {
@@ -85,31 +89,36 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Center(
-                  child: CachedNetworkImage(
-                    imageUrl: widget.imageUrl,
-                    imageBuilder: (context, imageProvider) => Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: imageProvider, fit: BoxFit.cover),
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
+              Stack(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Center(
+                      child: CachedNetworkImage(
+                        imageUrl: widget.imageUrl,
+                        imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: imageProvider, fit: BoxFit.cover),
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(10),
+                            ),
+                          ),
                         ),
+                        width: 300,
+                        height: 400,
+                        progressIndicatorBuilder:
+                            (context, url, downloadProgress) => Center(
+                          child: CircularProgressIndicator(
+                              value: downloadProgress.progress),
+                        ),
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
                       ),
                     ),
-                    width: 300,
-                    height: 400,
-                    progressIndicatorBuilder:
-                        (context, url, downloadProgress) => Center(
-                      child: CircularProgressIndicator(
-                          value: downloadProgress.progress),
-                    ),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
                   ),
-                ),
+                  
+                ],
               ),
               const SizedBox(height: 10),
               InkWell(
@@ -204,8 +213,8 @@ class _ImageDetailsPageState extends State<ImageDetailsPage> {
     try {
       await launchUrlString(whatsappURl, mode: LaunchMode.externalApplication);
     } catch (error) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text("Whatsapp not installed")));
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Whatsapp not installed")));
     }
   }
 }

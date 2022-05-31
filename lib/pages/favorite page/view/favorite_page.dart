@@ -19,7 +19,6 @@ class FavoritePage extends StatefulWidget {
 }
 
 class _FavoritePageState extends State<FavoritePage> {
-
   final _controller = FavoriteController();
 
   @override
@@ -100,17 +99,27 @@ class _FavoritePageState extends State<FavoritePage> {
                                 },
                               ),
                             ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  IconButton(
-                                      onPressed: () async {
-                                        await _controller.removeFavorites(favorite);
-                                      },
-                                      icon:
-                                          const FaIcon(FontAwesomeIcons.trash, size:20,color: MyColors.primarygreen,)),
-                                ],
-                              ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                IconButton(
+                                    onPressed: () async {
+                                      await _controller
+                                          .removeFavorites(favorite["id"]);
+
+                                      await Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (BuildContext context) =>
+                                                  FavoritePage()));
+                                    },
+                                    icon: const FaIcon(
+                                      FontAwesomeIcons.trash,
+                                      size: 20,
+                                      color: MyColors.primarygreen,
+                                    )),
+                              ],
+                            ),
                           ],
                         ),
                     ],
