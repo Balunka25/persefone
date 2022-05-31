@@ -30,7 +30,7 @@ class _StylishDrawerState extends State<StylishDrawer> {
               child: Container(
                 decoration: BoxDecoration(
                     image: const DecorationImage(
-                        image: AssetImage("lib/images/leaves1.gif"),
+                        image: AssetImage("lib/images/leaves.gif"),
                         fit: BoxFit.cover),
                     color: MyColors.primarygreen.withOpacity(0.5)),
               ),
@@ -69,7 +69,7 @@ class _StylishDrawerState extends State<StylishDrawer> {
                           style: Theme.of(context)
                               .textTheme
                               .headline3!
-                              .copyWith(color: Colors.black),
+                              .copyWith(color: Colors.orangeAccent),
                         )
                       ],
                     ),
@@ -91,7 +91,7 @@ class _StylishDrawerState extends State<StylishDrawer> {
                           decoration: const BoxDecoration(
                             image: DecorationImage(
                               image: AssetImage(
-                                  "lib/images/logo_favorite_page.png"),
+                                  "lib/images/heart.png"),
                             ),
                           ),
                         ),
@@ -103,7 +103,7 @@ class _StylishDrawerState extends State<StylishDrawer> {
                             style: Theme.of(context)
                                 .textTheme
                                 .headline3!
-                                .copyWith(color: Colors.black),
+                                .copyWith(color: Colors.orangeAccent),
                           ),
                         ),
                       ],
@@ -124,7 +124,7 @@ class _StylishDrawerState extends State<StylishDrawer> {
                           height: 150,
                           decoration: const BoxDecoration(
                             image: DecorationImage(
-                              image: AssetImage("lib/images/explorar_icon.png"),
+                              image: AssetImage("lib/images/change_icon.png"),
                             ),
                           ),
                         ),
@@ -136,7 +136,7 @@ class _StylishDrawerState extends State<StylishDrawer> {
                             style: Theme.of(context)
                                 .textTheme
                                 .headline3!
-                                .copyWith(color: Colors.black),
+                                .copyWith(color: Colors.orangeAccent),
                           ),
                         ),
                       ],
