@@ -130,7 +130,7 @@ class _ExplorePageState extends State<ExplorePage> {
                                   children: [
                                     FavoriteButton(
                                       iconSize: 50,
-                                      iconColor: MyColors.primaryyellow,
+                                      iconColor:Colors.orangeAccent,
                                       isFavorite: post.isFavorite,
                                       valueChanged: (_isFavorite) async {
                                         await controller.manageFavorite(post);
